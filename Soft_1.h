@@ -4,6 +4,20 @@
 #include <vector>
 using namespace std;
 
+class Character {
+    public:
+        Character();
+        int attack();
+        int looseHP();
+        ~Character();
+    
+    private:
+        string name;
+        int hp;
+        int styrke;
+    
+    };
+
 class GameMaster{
 public: 
     GameMaster();
@@ -15,7 +29,7 @@ public:
 private:
     vector<Character> enemies;
 
-}
+};
 
 
 #endif
