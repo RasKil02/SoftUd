@@ -9,11 +9,14 @@ Karakter::Karakter(string n, int h, int s) {
 }
 
 int Karakter::angreb() {
-    int nyHP = hp - styrke;
-    return nyHP;
+    return styrke;
 }
 
 int Karakter::mistHP() {
+    hp -= styrke;
+    if (hp <= 0)
+        return ('Er død');
+    return hp
 
 }
 
