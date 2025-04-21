@@ -4,12 +4,12 @@
 #include <vector>
 using namespace std;
 
-class Character {
+class Karakter {
     public:
-        Character();
-        int attack();
+        Karakter();
+        int angreb();
         int looseHP();
-        ~Character();
+        ~Karakter();
     
     private:
         string name;
@@ -27,9 +27,27 @@ public:
     ~GameMaster();
 
 private:
-    vector<Character> enemies;
+    vector<Karakter> enemies;
 
 };
+
+class Hero : Karakter
+{
+public:
+    Hero();
+    int levelUp();
+    ~Hero();
+private:
+    int xp;
+};
+
+class Fjende : Karakter
+{
+public:
+
+private:
+};
+
 
 
 #endif
