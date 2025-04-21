@@ -52,3 +52,5 @@ int Hero::levelUp() {
     return level;
 
 }
+
+Hero::~Hero() {}
