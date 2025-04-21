@@ -7,8 +7,9 @@ using namespace std;
 class Karakter {
     public:
         Karakter();
+        Karakter(string, int, int);
         int angreb();
-        int looseHP();
+        int mistHP();
         ~Karakter();
     
     private:
@@ -18,7 +19,7 @@ class Karakter {
     
     };
 
-class GameMaster{
+class GameMaster { 
 public: 
     GameMaster();
     int startGame();
@@ -31,8 +32,7 @@ private:
 
 };
 
-class Hero : Karakter
-{
+class Hero : Karakter {
 public:
     Hero();
     int levelUp();
@@ -41,8 +41,7 @@ private:
     int xp;
 };
 
-class Fjende : Karakter
-{
+class Fjende : Karakter {
 public:
 
 private:
