@@ -1,5 +1,5 @@
-#ifndef SOFT_1.H
-#define SOFT_1.H
+#ifndef SOFT_1_H
+#define SOFT_1_H
 #include <string>
 #include <vector>
 using namespace std;
@@ -10,10 +10,10 @@ class Karakter {
         Karakter(string, int, int);
         int angreb();
         int mistHP();
-        ~Karakter();
+        virtual ~Karakter();
     
     private:
-        string name;
+        string navn;
         int hp;
         int styrke;
     
@@ -32,7 +32,7 @@ private:
 
 };
 
-class Hero : Karakter {
+class Hero : public Karakter {
 public:
     Hero();
     int levelUp();
@@ -41,10 +41,10 @@ private:
     int xp;
 };
 
-class Fjende : Karakter {
+class Fjende : public Karakter {
 public:
-
-private:
+    Fjende();
+    ~Fjende();
 };
 
 
