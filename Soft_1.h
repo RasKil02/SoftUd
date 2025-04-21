@@ -22,13 +22,12 @@ class Karakter {
 class GameMaster { 
 public: 
     GameMaster();
-    int newHero();
-    int loadHero();
+    void newHero();
+    void loadHero();
     ~GameMaster();
 
 private:
     vector<Karakter> enemies;
-
 };
 
 class Hero : public Karakter {

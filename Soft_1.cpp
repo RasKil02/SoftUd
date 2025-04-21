@@ -1,4 +1,5 @@
 #include "Soft_1.h"
+#include <iostream>
 
 Karakter::Karakter() {}
 
@@ -26,12 +27,28 @@ Karakter::~Karakter() {}
 
 GameMaster::GameMaster() {}
 
-int GameMaster::newHero() {
-
+void GameMaster::newHero() {
+    string navn;
+    cout << "Indtast navn på Hero: ";
+    cin >> navn;
+    Hero = Hero(navn, 10, 2);
 }
 
-int GameMaster::loadHero() {
+void GameMaster::loadHero() {
 
 }
 
 GameMaster::~GameMaster() {}
+
+
+
+
+Hero::Hero() {}
+
+int Hero::levelUp() {
+    int level = 1;
+    if (xp >= (level * 1000))
+        level += 1;
+    return level;
+
+}
