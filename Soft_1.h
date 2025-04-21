@@ -22,7 +22,6 @@ class Karakter {
 class GameMaster { 
 public: 
     GameMaster();
-    int startGame();
     int newHero();
     int loadHero();
     ~GameMaster();
