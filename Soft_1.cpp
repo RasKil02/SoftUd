@@ -164,7 +164,7 @@ void GameMaster::startKamp() {
     }
 }
 
-const vector<Hero>& GameMaster::getHeroes() const {
+vector<Hero>& GameMaster::getHeroes() {
     return heroes;
 }
 GameMaster::~GameMaster() {}

@@ -56,7 +56,7 @@ class GameMaster {
         void gemHero();
         void opretFjender();
         const vector<Fjende>& getFjender() const;
-        const vector<Hero>& getHeroes() const;
+        vector<Hero>& getHeroes();
         void startKamp();
         ~GameMaster();
     
