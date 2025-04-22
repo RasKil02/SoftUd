@@ -19,19 +19,6 @@ class Karakter {
     
     };
 
-class GameMaster { 
-public: 
-    GameMaster();
-    void nyHero();
-    void loadHero();
-    void gemHero();
-    ~GameMaster();
-
-private:
-    vector<Karakter> enemies;
-    vector<Hero> heroes;
-};
-
 class Hero : public Karakter {
 public:
     Hero();
@@ -47,6 +34,21 @@ private:
     int level = 1;
 };
 
+
+class GameMaster { 
+    public: 
+        GameMaster();
+        void nyHero();
+        void loadHero();
+        void gemHero();
+        ~GameMaster();
+    
+    private:
+        vector<Karakter> enemies;
+        vector<Hero> heroes;
+    };
+
+    
 class Fjende : public Karakter {
 public:
     Fjende();

@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+
+// Karakter klasse
 Karakter::Karakter() {}
 
 Karakter::Karakter(string n, int h, int s) {
@@ -31,7 +33,7 @@ Karakter::~Karakter() {}
 
 
 
-
+// GameMaster klasse
 GameMaster::GameMaster() {}
 
 void GameMaster::nyHero() {
@@ -43,6 +45,7 @@ void GameMaster::nyHero() {
 }
 
 void GameMaster::loadHero() {
+    // ifstream til at finde de gemte hereos
     ifstream file("Heroes.txt");
     string navn;
     int hp, styrke, level;
@@ -57,6 +60,7 @@ void GameMaster::loadHero() {
 }
 
 void GameMaster::gemHero() {
+    // ofstream til at gemme heroes 
     ofstream file("Heroes.txt");
 
     for(Hero& h : heroes)
@@ -69,10 +73,7 @@ void GameMaster::gemHero() {
 GameMaster::~GameMaster() {}
 
 
-
-
-
-
+// Hero klasse - Arver fra karakterklassen
 Hero::Hero() {}
 
 Hero::Hero(string n, int h, int s) : Karakter(n, h, s) {
@@ -106,7 +107,7 @@ Hero::~Hero() {}
 
 
 
-
+// Fjende klasse - Husk den arver fra karakter-klassen
 Fjende::Fjende() {}
 
 Fjende::~Fjende() {}
