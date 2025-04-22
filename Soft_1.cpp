@@ -87,19 +87,19 @@ int Hero::levelUp() {
 
 }
 
-string Hero::getNavn() {
+string Hero::getNavn() const {
     return navn;
 }
 
-int Hero::getHP() {
+int Hero::getHP() const {
     return hp;
 }
 
-int Hero::getStyrke() {
+int Hero::getStyrke() const {
     return styrke;
 }
 
-int Hero::getLevel() {
+int Hero::getLevel() const {
     return level;
 }
 Hero::~Hero() {}

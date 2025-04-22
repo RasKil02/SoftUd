@@ -37,10 +37,10 @@ public:
     Hero();
     Hero(string, int, int);
     int levelUp();
-    string getNavn();
-    int getHP();
-    int getStyrke();
-    int getLevel();
+    string getNavn() const;
+    int getHP() const;
+    int getStyrke() const;
+    int getLevel() const;
     ~Hero();
 private:
     int xp = 0;
