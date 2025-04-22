@@ -28,6 +28,20 @@ int Karakter::mistHP() {
 
 }
 
+string Fjende::getNavn() const {
+    return navn;
+}
+
+int Fjende::getHP() const {
+    return hp;
+}
+
+int Fjende::getStyrke() const {
+    return styrke;
+}
+
+
+
 Karakter::~Karakter() {}
 
 
@@ -134,7 +148,7 @@ void GameMaster::startKamp() {
         return;
     }
 
-    Karakter& valgtFjende = fjender[fjendeValg - 1];
+    Fjende& valgtFjende = fjender[fjendeValg - 1];
 
     cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
 
@@ -150,6 +164,9 @@ void GameMaster::startKamp() {
     }
 }
 
+const vector<Hero>& GameMaster::getHeroes() const {
+    return heroes;
+}
 GameMaster::~GameMaster() {}
 
 

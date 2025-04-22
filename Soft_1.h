@@ -10,6 +10,9 @@ class Karakter {
         Karakter(string, int, int);
         int angreb();
         int mistHP();
+        string getNavn() const;
+        int getHP() const;
+        int getStyrke() const;
         virtual ~Karakter();
     
     protected:
@@ -34,6 +37,16 @@ private:
     int level = 1;
 };
 
+class Fjende : public Karakter {
+    public:
+        Fjende();
+        Fjende(string, int, int);
+        string getNavn() const;
+        int getHP() const;
+        int getStyrke() const;
+        ~Fjende();
+    };
+    
 
 class GameMaster { 
     public: 
@@ -43,6 +56,7 @@ class GameMaster {
         void gemHero();
         void opretFjender();
         const vector<Fjende>& getFjender() const;
+        const vector<Hero>& getHeroes() const;
         void startKamp();
         ~GameMaster();
     
@@ -50,18 +64,6 @@ class GameMaster {
         vector<Fjende> fjender;
         vector<Hero> heroes;
     };
-
-
-class Fjende : public Karakter {
-public:
-    Fjende();
-    Fjende(string, int, int);
-    string getNavn() const;
-    int getHP() const;
-    int getStyrke() const;
-    ~Fjende();
-};
-
 
 
 #endif
