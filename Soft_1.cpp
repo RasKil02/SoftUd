@@ -79,6 +79,15 @@ void GameMaster::opretFjender() {
     Fjende f6("Abe Kongen", 30, 5);
     Fjende f7("Enhjørning", 50, 8);
     Fjende f8("Drage", 100, 10);
+
+    fjender.push_back(f1);
+    fjender.push_back(f2);
+    fjender.push_back(f3);
+    fjender.push_back(f4);
+    fjender.push_back(f5);
+    fjender.push_back(f6);
+    fjender.push_back(f7);
+    fjender.push_back(f8);
 }
 
 GameMaster::~GameMaster() {}

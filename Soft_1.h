@@ -45,7 +45,7 @@ class GameMaster {
         ~GameMaster();
     
     private:
-        vector<Karakter> enemies;
+        vector<Karakter> fjender;
         vector<Hero> heroes;
     };
 
