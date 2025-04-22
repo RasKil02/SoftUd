@@ -33,7 +33,8 @@ void GameMaster::nyHero() {
     string navn;
     cout << "Indtast navn på Hero: ";
     cin >> navn;
-    Hero = Hero(navn, 10, 2);
+    Hero hero(navn, 10, 2);
+    heroes.push_back(hero);
 }
 
 void GameMaster::loadHero() {
@@ -43,13 +44,11 @@ void GameMaster::loadHero() {
 void GameMaster::gemHero() {
     ofstream file("Heroes.txt");
 
-    for(Hero& h :Hero)
+    for(Hero& h : heroes)
     {
         file << h.getNavn() << " " << h.getHP() << " " << h.getStyrke() << " " << h.getLevel() << endl;
     }
     file.close();
-    }
-
 }
 
 GameMaster::~GameMaster() {}
@@ -59,12 +58,31 @@ GameMaster::~GameMaster() {}
 
 Hero::Hero() {}
 
+Hero::Hero(string n, int h, int s) : Karakter(n, h, s) {
+    xp = 0;
+    level = 1;
+}
+
 int Hero::levelUp() {
-    int level = 1;
     if (xp >= (level * 1000))
         level += 1;
     return level;
 
 }
 
+string Hero::getNavn() {
+    return navn;
+}
+
+int Hero::getHP() {
+    return hp;
+}
+
+int Hero::getStyrke() {
+    return styrke;
+}
+
+int Hero::getLevel() {
+    return level;
+}
 Hero::~Hero() {}

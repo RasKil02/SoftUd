@@ -29,15 +29,22 @@ public:
 
 private:
     vector<Karakter> enemies;
+    vector<Karakter> heroes;
 };
 
 class Hero : public Karakter {
 public:
     Hero();
+    Hero(string, int, int);
     int levelUp();
+    string getNavn();
+    int getHP();
+    int getStyrke();
+    int getLevel();
     ~Hero();
 private:
-    int xp;
+    int xp = 0;
+    int level = 1;
 };
 
 class Fjende : public Karakter {
