@@ -41,6 +41,7 @@ class GameMaster {
         void nyHero();
         void loadHero();
         void gemHero();
+        void opretFjender();
         ~GameMaster();
     
     private:
@@ -48,10 +49,11 @@ class GameMaster {
         vector<Hero> heroes;
     };
 
-    
+
 class Fjende : public Karakter {
 public:
     Fjende();
+    Fjende(string, int, int);
     ~Fjende();
 };
 

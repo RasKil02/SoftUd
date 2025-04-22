@@ -70,6 +70,17 @@ void GameMaster::gemHero() {
     file.close();
 }
 
+void GameMaster::opretFjender() {
+    Fjende f1("Hest", 4, 1);
+    Fjende f2("Weak Goblin", 4, 2);
+    Fjende f3("Strong Goblin", 8, 3);
+    Fjende f4("Stronger Goblin", 10, 4);
+    Fjende f5("Den stærkeste Goblin", 15, 5);
+    Fjende f6("Abe Kongen", 30, 5);
+    Fjende f7("Enhjørning", 50, 8);
+    Fjende f8("Drage", 100, 10);
+}
+
 GameMaster::~GameMaster() {}
 
 
@@ -109,5 +120,7 @@ Hero::~Hero() {}
 
 // Fjende klasse - Husk den arver fra karakter-klassen
 Fjende::Fjende() {}
+
+Fjende::Fjende(string n, int h, int s) : Karakter(n, h, s) {};
 
 Fjende::~Fjende() {}
