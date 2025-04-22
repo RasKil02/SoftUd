@@ -17,10 +17,11 @@ int Karakter::angreb() {
     return styrke;
 }
 
-int Karakter::mistHP() {
-    hp -= styrke;
+int Karakter::mistHP(int skade) {
+    hp -= skade;
     if (hp <= 0)
     {
+        hp = 0;
         cout << navn << " er død" << endl;
         return 0;
     }
@@ -152,19 +153,27 @@ void GameMaster::startKamp() {
 
     cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
 
-    while (valgtHero.getHP() > 0 && valgtFjende.mistHP() > 0) {
-        valgtFjende.mistHP();
-        valgtHero.mistHP();
-    }
+    while (valgtHero.getHP() > 0 && valgtFjende.getHP() > 0) {
+        // Helt angriber fjenden
+        int skadeTilFjende = valgtHero.angreb();
+        cout << valgtHero.getNavn() << " angriber " << valgtFjende.getNavn()
+             << " med " << skadeTilFjende << " skade." << endl;
+        if (valgtFjende.mistHP(skadeTilFjende) == 0) {
+            cout << valgtHero.getNavn() << " vandt kampen!\n";
+            break;
+        }
 
-    if (valgtHero.getHP() > 0) {
-        cout << valgtHero.getNavn() << " vandt kampen!\n";
-        int xpModtaget = valgtFjende.givXp();
-        valgtHero.modtagXp(xpModtaget);
-    } else {
-        cout << valgtFjende.getNavn() << " vandt kampen!\n";
+        // Fjende angriber helten
+        int skadeTilHero = valgtFjende.angreb();
+        cout << valgtFjende.getNavn() << " angriber " << valgtHero.getNavn()
+             << " med " << skadeTilHero << " skade." << endl;
+        if (valgtHero.mistHP(skadeTilHero) == 0) {
+            cout << valgtFjende.getNavn() << " vandt kampen!\n";
+            break;
+        }
     }
 }
+
 
 vector<Hero>& GameMaster::getHeroes() {
     return heroes;
@@ -184,8 +193,8 @@ int Hero::levelUp() {
     if (xp >= (level * 1000))
     {
         level += 1;
-        hp + 2;
-        styrke + 1;
+        hp += 2;
+        styrke += 1;
     }
     return level;
 }
@@ -197,6 +206,7 @@ int Hero::modtagXp(int modtagXp) {
     {  
         levelUp(); 
     }
+    return xp;
 }
 
 string Hero::getNavn() const {

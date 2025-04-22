@@ -9,7 +9,7 @@ class Karakter {
         Karakter();
         Karakter(string, int, int);
         int angreb();
-        int mistHP();
+        int mistHP(int skade);
         string getNavn() const;
         int getHP() const;
         int getStyrke() const;
@@ -42,9 +42,6 @@ class Fjende : public Karakter {
     public:
         Fjende();
         Fjende(string, int, int, int);
-        string getNavn() const;
-        int getHP() const;
-        int getStyrke() const;
         int givXp();
         ~Fjende();
     protected:

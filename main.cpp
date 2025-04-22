@@ -80,15 +80,23 @@ int main() {
                 cout << "\nKAMP STARTER! " << aktivHero->getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
 
               
-                while (aktivHero->getHP() > 0 && valgtFjende.mistHP() > 0) {
-                    cout << aktivHero->getNavn() << " angriber " << valgtFjende.getNavn() << "!\n";
-                    valgtFjende.mistHP();
-                    if (valgtFjende.getHP() > 0) {
-                        cout << valgtFjende.getNavn() << " angriber " << aktivHero->getNavn() << "!\n";
-                        aktivHero->mistHP();
+                while (aktivHero->getHP() > 0 && valgtFjende.getHP() > 0) {
+                    // Helt angriber
+                    int skadeTilFjende = aktivHero->angreb();  
+                    cout << aktivHero->getNavn() << " angriber " << valgtFjende.getNavn() << " med " << skadeTilFjende << " skade!" << endl;
+                    if (valgtFjende.mistHP(skadeTilFjende) == 0) {  
+                        cout << valgtFjende.getNavn() << " er død!" << endl;
+                        break;  
+                    }
+                
+                    // Fjende angriber
+                    int skadeTilHero = valgtFjende.angreb();  
+                    cout << valgtFjende.getNavn() << " angriber " << aktivHero->getNavn() << " med " << skadeTilHero << " skade!" << endl;
+                    if (aktivHero->mistHP(skadeTilHero) == 0) {  
+                        cout << aktivHero->getNavn() << " er død!" << endl;
+                        break;  
                     }
                 }
-
                 // Slut på kamp
                 if (aktivHero->getHP() > 0) {
                     cout << aktivHero->getNavn() << " vandt kampen!\n";
