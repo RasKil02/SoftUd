@@ -90,6 +90,66 @@ void GameMaster::opretFjender() {
     fjender.push_back(f8);
 }
 
+void GameMaster::startKamp() {
+    if (heroes.empty()) {
+        cout << "Ingen heroes tilgængelige. Opret en først!\n";
+        return;
+    }
+
+    cout << "\n-- Vælg en Hero --\n";
+    for (size_t i = 0; i < heroes.size(); ++i) {
+        cout << i + 1 << ". " << heroes[i].getNavn()
+             << " (HP: " << heroes[i].getHP() << ", Styrke: " << heroes[i].getStyrke() << ")\n";
+    }
+
+    int heroValg;
+    cout << "Indtast nummeret på din Hero: ";
+    cin >> heroValg;
+
+    if (heroValg < 1 || heroValg > (int)heroes.size()) {
+        cout << "Ugyldigt valg.\n";
+        return;
+    }
+
+    Hero& valgtHero = heroes[heroValg - 1];
+
+    if (fjender.empty()) {
+        cout << "Ingen fjender oprettet.\n";
+        return;
+    }
+
+    cout << "\n-- Vælg en Fjende --\n";
+    for (size_t i = 0; i < fjender.size(); ++i) {
+        const Fjende& f = fjender[i];
+        cout << i + 1 << ". " << f.getNavn()
+             << " (HP: " << f.getHP() << ", Styrke: " << f.getStyrke() << ")\n";
+    }
+
+    int fjendeValg;
+    cout << "Indtast nummeret på fjenden: ";
+    cin >> fjendeValg;
+
+    if (fjendeValg < 1 || fjendeValg > (int)fjender.size()) {
+        cout << "Ugyldigt valg.\n";
+        return;
+    }
+
+    Karakter& valgtFjende = fjender[fjendeValg - 1];
+
+    cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
+
+    while (valgtHero.getHP() > 0 && valgtFjende.mistHP() > 0) {
+        valgtFjende.mistHP();
+        valgtHero.mistHP();
+    }
+
+    if (valgtHero.getHP() > 0) {
+        cout << valgtHero.getNavn() << " vandt kampen!\n";
+    } else {
+        cout << valgtFjende.getNavn() << " vandt kampen!\n";
+    }
+}
+
 GameMaster::~GameMaster() {}
 
 
@@ -136,5 +196,18 @@ Hero::~Hero() {}
 Fjende::Fjende() {}
 
 Fjende::Fjende(string n, int h, int s) : Karakter(n, h, s) {};
+
+string Fjende::getNavn() const {
+    return navn;
+}
+
+int Fjende::getHP() const {
+    return hp;
+}
+
+int Fjende::getStyrke() const {
+    return styrke;
+}
+
 
 Fjende::~Fjende() {}

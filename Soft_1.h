@@ -43,10 +43,11 @@ class GameMaster {
         void gemHero();
         void opretFjender();
         const vector<Fjende>& getFjender() const;
+        void startKamp();
         ~GameMaster();
     
     protected:
-        vector<Karakter> fjender;
+        vector<Fjende> fjender;
         vector<Hero> heroes;
     };
 
@@ -55,6 +56,9 @@ class Fjende : public Karakter {
 public:
     Fjende();
     Fjende(string, int, int);
+    string getNavn() const;
+    int getHP() const;
+    int getStyrke() const;
     ~Fjende();
 };
 
