@@ -28,15 +28,15 @@ int Karakter::mistHP() {
 
 }
 
-string Fjende::getNavn() const {
+string Karakter::getNavn() const {
     return navn;
 }
 
-int Fjende::getHP() const {
+int Karakter::getHP() const {
     return hp;
 }
 
-int Fjende::getStyrke() const {
+int Karakter::getStyrke() const {
     return styrke;
 }
 
@@ -85,14 +85,14 @@ void GameMaster::gemHero() {
 }
 
 void GameMaster::opretFjender() {
-    Fjende f1("Hest", 4, 1);
-    Fjende f2("Weak Goblin", 4, 2);
-    Fjende f3("Strong Goblin", 8, 3);
-    Fjende f4("Stronger Goblin", 10, 4);
-    Fjende f5("Den stærkeste Goblin", 15, 5);
-    Fjende f6("Abe Kongen", 30, 5);
-    Fjende f7("Enhjørning", 50, 8);
-    Fjende f8("Drage", 100, 10);
+    Fjende f1("Hest", 4, 1, 100);
+    Fjende f2("Weak Goblin", 4, 2, 200);
+    Fjende f3("Strong Goblin", 8, 3, 400);
+    Fjende f4("Stronger Goblin", 10, 4, 500);
+    Fjende f5("Den stærkeste Goblin", 15, 5, 800);
+    Fjende f6("Abe Kongen", 30, 5, 1000);
+    Fjende f7("Enhjørning", 50, 8, 1500);
+    Fjende f8("Drage", 100, 10, 3000);
 
     fjender.push_back(f1);
     fjender.push_back(f2);
@@ -159,6 +159,8 @@ void GameMaster::startKamp() {
 
     if (valgtHero.getHP() > 0) {
         cout << valgtHero.getNavn() << " vandt kampen!\n";
+        int xpModtaget = valgtFjende.givXp();
+        valgtHero.modtagXp(xpModtaget);
     } else {
         cout << valgtFjende.getNavn() << " vandt kampen!\n";
     }
@@ -180,9 +182,21 @@ Hero::Hero(string n, int h, int s) : Karakter(n, h, s) {
 
 int Hero::levelUp() {
     if (xp >= (level * 1000))
+    {
         level += 1;
+        hp + 2;
+        styrke + 1;
+    }
     return level;
+}
 
+int Hero::modtagXp(int modtagXp) {
+    this->xp += modtagXp;
+    cout << "Du har modtaget " << xp << " XP!\n";
+    while (xp >= (level * 1000)) 
+    {  
+        levelUp(); 
+    }
 }
 
 string Hero::getNavn() const {
@@ -212,6 +226,10 @@ Hero::~Hero() {}
 // Fjende klasse - Husk den arver fra karakter-klassen
 Fjende::Fjende() {}
 
-Fjende::Fjende(string n, int h, int s) : Karakter(n, h, s) {};
+Fjende::Fjende(string n, int h, int s, int xp) : Karakter(n, h, s), xp(xp) {};
+
+int Fjende::givXp() {
+    return xp;
+}
 
 Fjende::~Fjende() {}

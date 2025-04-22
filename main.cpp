@@ -37,14 +37,14 @@ int main() {
                     for (size_t i = 0; i < heroes.size(); ++i) {
                         cout << i + 1 << ". " << heroes[i].getNavn()
                              << " (HP: " << heroes[i].getHP()
-                             << ", Styrke: " << heroes[i].getStyrke() << ")\n";
+                             << ", Styrke: " << heroes[i].getStyrke() << endl;;
                     }
                     int hvalg;
                     cout << "Indtast nummer på den hero du vil vælge: ";
                     cin >> hvalg;
                     if (hvalg >= 1 && hvalg <= heroes.size()) {
                         aktivHero = &gm.getHeroes()[hvalg - 1];
-                        cout << "Hero valgt: " << aktivHero->getNavn() << "\n";
+                        cout << "Hero valgt: " << aktivHero->getNavn() << endl;;
                     } else {
                         cout << "Ugyldigt valg.\n";
                     }

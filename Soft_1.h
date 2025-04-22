@@ -27,6 +27,7 @@ public:
     Hero();
     Hero(string, int, int);
     int levelUp();
+    int modtagXp(int);
     string getNavn() const;
     int getHP() const;
     int getStyrke() const;
@@ -40,11 +41,14 @@ private:
 class Fjende : public Karakter {
     public:
         Fjende();
-        Fjende(string, int, int);
+        Fjende(string, int, int, int);
         string getNavn() const;
         int getHP() const;
         int getStyrke() const;
+        int givXp();
         ~Fjende();
+    protected:
+        int xp;
     };
     
 
