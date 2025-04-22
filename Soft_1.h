@@ -12,7 +12,7 @@ class Karakter {
         int mistHP();
         virtual ~Karakter();
     
-    private:
+    protected:
         string navn;
         int hp;
         int styrke;
@@ -29,7 +29,7 @@ public:
 
 private:
     vector<Karakter> enemies;
-    vector<Karakter> heroes;
+    vector<Hero> heroes;
 };
 
 class Hero : public Karakter {
