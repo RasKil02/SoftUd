@@ -214,17 +214,4 @@ Fjende::Fjende() {}
 
 Fjende::Fjende(string n, int h, int s) : Karakter(n, h, s) {};
 
-string Fjende::getNavn() const {
-    return navn;
-}
-
-int Fjende::getHP() const {
-    return hp;
-}
-
-int Fjende::getStyrke() const {
-    return styrke;
-}
-
-
 Fjende::~Fjende() {}

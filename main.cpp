@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     GameMaster gm;
-    gm.opretFjender();  // vi opretter fjender med det samme
+    gm.opretFjender(); 
 
     bool kører = true;
     Hero* aktivHero = nullptr;
@@ -23,7 +23,7 @@ int main() {
         switch (valg) {
             case 1: {
                 gm.nyHero();
-                aktivHero = &gm.getHeroes().back(); // sætter sidste oprettede hero som aktiv
+                aktivHero = &gm.getHeroes().back();
                 cout << "Hero oprettet og valgt!\n";
                 break;
             }
@@ -60,7 +60,7 @@ int main() {
                 cout << "Ugyldigt valg.\n";
         }
 
-        // Hvis der er en aktiv hero, fortsæt til kampmodulet
+
         if (aktivHero != nullptr) {
             // Vælg fjende
             cout << "\n--- VÆLG EN FJENDE ---\n";
@@ -79,12 +79,10 @@ int main() {
                 Fjende valgtFjende = fjender[fvalg - 1];
                 cout << "\nKAMP STARTER! " << aktivHero->getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
 
-                // Kamp loop
+              
                 while (aktivHero->getHP() > 0 && valgtFjende.mistHP() > 0) {
-                    // Hero angreb fjende
                     cout << aktivHero->getNavn() << " angriber " << valgtFjende.getNavn() << "!\n";
                     valgtFjende.mistHP();
-                    // Fjende angriber hero
                     if (valgtFjende.getHP() > 0) {
                         cout << valgtFjende.getNavn() << " angriber " << aktivHero->getNavn() << "!\n";
                         aktivHero->mistHP();
@@ -97,7 +95,7 @@ int main() {
                 } else {
                     cout << valgtFjende.getNavn() << " vandt kampen!\n";
                 }
-                // Efter kamp, reset aktivHero til nullptr
+         
                 aktivHero = nullptr;
             } else {
                 cout << "Ugyldigt valg af fjende.\n";
