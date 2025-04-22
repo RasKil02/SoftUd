@@ -42,9 +42,10 @@ class GameMaster {
         void loadHero();
         void gemHero();
         void opretFjender();
+        const vector<Fjende>& getFjender() const;
         ~GameMaster();
     
-    private:
+    protected:
         vector<Karakter> fjender;
         vector<Hero> heroes;
     };

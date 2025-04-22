@@ -123,6 +123,11 @@ int Hero::getStyrke() const {
 int Hero::getLevel() const {
     return level;
 }
+
+const vector<Fjende>& GameMaster::getFjender() const {
+    return fjender;
+}
+
 Hero::~Hero() {}
 
 
