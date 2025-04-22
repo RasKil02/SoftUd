@@ -41,6 +41,9 @@ int Karakter::getStyrke() const {
     return styrke;
 }
 
+void Karakter::setHp(int nyHp) {
+    hp = nyHp;
+}
 
 
 Karakter::~Karakter() {}

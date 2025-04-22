@@ -13,6 +13,7 @@ class Karakter {
         string getNavn() const;
         int getHP() const;
         int getStyrke() const;
+        void setHp(int);
         virtual ~Karakter();
     
     protected:

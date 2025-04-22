@@ -62,6 +62,7 @@ int main() {
 
 
         if (aktivHero != nullptr) {
+            aktivHero->setHp(10 + (aktivHero->getLevel() - 1) * 2);
             // Vælg fjende
             cout << "\n--- VÆLG EN FJENDE ---\n";
             const vector<Fjende>& fjender = gm.getFjender();
