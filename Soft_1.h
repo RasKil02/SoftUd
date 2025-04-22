@@ -22,8 +22,9 @@ class Karakter {
 class GameMaster { 
 public: 
     GameMaster();
-    void newHero();
+    void nyHero();
     void loadHero();
+    void gemHero();
     ~GameMaster();
 
 private:

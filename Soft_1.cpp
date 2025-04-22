@@ -1,5 +1,7 @@
 #include "Soft_1.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 Karakter::Karakter() {}
 
@@ -27,7 +29,7 @@ Karakter::~Karakter() {}
 
 GameMaster::GameMaster() {}
 
-void GameMaster::newHero() {
+void GameMaster::nyHero() {
     string navn;
     cout << "Indtast navn på Hero: ";
     cin >> navn;
@@ -35,6 +37,18 @@ void GameMaster::newHero() {
 }
 
 void GameMaster::loadHero() {
+
+}
+
+void GameMaster::gemHero() {
+    ofstream file("Heroes.txt");
+
+    for(Hero& h :Hero)
+    {
+        file << h.getNavn() << " " << h.getHP() << " " << h.getStyrke() << " " << h.getLevel() << endl;
+    }
+    file.close();
+    }
 
 }
 
