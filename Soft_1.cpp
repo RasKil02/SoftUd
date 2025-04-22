@@ -18,12 +18,17 @@ int Karakter::angreb() {
 int Karakter::mistHP() {
     hp -= styrke;
     if (hp <= 0)
-        return ('Er død');
+    {
+        cout << navn << " er død" << endl;
+        return 0;
+    }
     return hp;
 
 }
 
 Karakter::~Karakter() {}
+
+
 
 
 
@@ -38,7 +43,17 @@ void GameMaster::nyHero() {
 }
 
 void GameMaster::loadHero() {
+    ifstream file("Heroes.txt");
+    string navn;
+    int hp, styrke, level;
 
+    while (file >> navn >> hp >> styrke >> level) 
+    {
+        Hero hero(navn, hp, styrke);
+        heroes.push_back(hero);
+    }
+
+    file.close();
 }
 
 void GameMaster::gemHero() {
@@ -52,6 +67,8 @@ void GameMaster::gemHero() {
 }
 
 GameMaster::~GameMaster() {}
+
+
 
 
 
@@ -86,3 +103,10 @@ int Hero::getLevel() {
     return level;
 }
 Hero::~Hero() {}
+
+
+
+
+Fjende::Fjende() {}
+
+Fjende::~Fjende() {}
