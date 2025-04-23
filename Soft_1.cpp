@@ -1,8 +1,5 @@
 #include "Soft_1.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
-
 
 // Karakter klasse
 Karakter::Karakter() {}
@@ -48,9 +45,6 @@ void Karakter::setHp(int nyHp) {
 
 Karakter::~Karakter() {}
 
-
-
-
 // GameMaster klasse
 GameMaster::GameMaster() {}
 
@@ -63,29 +57,18 @@ void GameMaster::nyHero() {
 }
 
 void GameMaster::loadHero() {
-    // ifstream til at finde de gemte hereos
-    ifstream file("Heroes.txt");
-    string navn;
-    int hp, styrke, level;
 
-    while (file >> navn >> hp >> styrke >> level) 
-    {
-        Hero hero(navn, hp, styrke);
-        heroes.push_back(hero);
-    }
+    heroes.clear();
+    
+    Hero hero1("Ralle", 10, 2);
+    Hero hero2("Bob", 12, 3);
+    Hero hero3("Luna", 8, 4);
+    Hero hero4("Tjalfe", 14, 1);
 
-    file.close();
-}
-
-void GameMaster::gemHero() {
-    // ofstream til at gemme heroes 
-    ofstream file("Heroes.txt");
-
-    for(Hero& h : heroes)
-    {
-        file << h.getNavn() << " " << h.getHP() << " " << h.getStyrke() << " " << h.getLevel() << endl;
-    }
-    file.close();
+    heroes.push_back(hero1);
+    heroes.push_back(hero2);
+    heroes.push_back(hero3);
+    heroes.push_back(hero4);
 }
 
 void GameMaster::opretFjender() {
@@ -162,6 +145,7 @@ void GameMaster::startKamp() {
         cout << valgtHero.getNavn() << " angriber " << valgtFjende.getNavn()
              << " med " << skadeTilFjende << " skade." << endl;
         if (valgtFjende.mistHP(skadeTilFjende) == 0) {
+            valgtHero.modtagXp(valgtFjende.givXp());
             valgtHero.setHp(valgtHero.getMaxHp());
             cout << valgtHero.getNavn() << " vandt kampen!\n";
             break;
@@ -200,7 +184,8 @@ int Hero::levelUp() {
         level += 1;
         hp += 2;
         styrke += 1;
-        maxHp = hp;
+        hp = maxHp;
+        cout << navn << " er steget i level" << endl;
     }
     return level;
 }
