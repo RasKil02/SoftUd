@@ -152,7 +152,7 @@ void GameMaster::startKamp() {
         return;
     }
 
-    Fjende& valgtFjende = fjender[fjendeValg - 1];
+    Fjende valgtFjende = fjender[fjendeValg - 1];
 
     cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
 
@@ -162,6 +162,7 @@ void GameMaster::startKamp() {
         cout << valgtHero.getNavn() << " angriber " << valgtFjende.getNavn()
              << " med " << skadeTilFjende << " skade." << endl;
         if (valgtFjende.mistHP(skadeTilFjende) == 0) {
+            valgtHero.setHp(valgtHero.getMaxHp());
             cout << valgtHero.getNavn() << " vandt kampen!\n";
             break;
         }
@@ -177,10 +178,10 @@ void GameMaster::startKamp() {
     }
 }
 
-
 vector<Hero>& GameMaster::getHeroes() {
     return heroes;
 }
+
 GameMaster::~GameMaster() {}
 
 
@@ -190,6 +191,7 @@ Hero::Hero() {}
 Hero::Hero(string n, int h, int s) : Karakter(n, h, s) {
     xp = 0;
     level = 1;
+    maxHp = h;
 }
 
 int Hero::levelUp() {
@@ -198,16 +200,18 @@ int Hero::levelUp() {
         level += 1;
         hp += 2;
         styrke += 1;
+        maxHp = hp;
     }
     return level;
 }
 
 int Hero::modtagXp(int modtagXp) {
-    this->xp += modtagXp;
-    cout << "Du har modtaget " << xp << " XP!\n";
+    xp += modtagXp;
+    cout <<"Du har modtaget " << modtagXp << " XP!\n";
     while (xp >= (level * 1000)) 
     {  
         levelUp(); 
+        cout << "Du er steget i level" << endl;
     }
     return xp;
 }
@@ -228,6 +232,10 @@ int Hero::getLevel() const {
     return level;
 }
 
+int Hero::getMaxHp() const {
+    return maxHp;
+}
+
 const vector<Fjende>& GameMaster::getFjender() const {
     return fjender;
 }
@@ -236,7 +244,7 @@ Hero::~Hero() {}
 
 
 
-// Fjende klasse - Husk den arver fra karakter-klassen
+// Fjende klasse - arver fra karakter-klassen
 Fjende::Fjende() {}
 
 Fjende::Fjende(string n, int h, int s, int xp) : Karakter(n, h, s), xp(xp) {};

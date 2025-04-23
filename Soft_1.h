@@ -33,10 +33,12 @@ public:
     int getHP() const;
     int getStyrke() const;
     int getLevel() const;
+    int getMaxHp() const;
     ~Hero();
 private:
     int xp = 0;
     int level = 1;
+    int maxHp;
 };
 
 class Fjende : public Karakter {
