@@ -59,11 +59,11 @@ void GameMaster::nyHero() {
 void GameMaster::loadHero() {
 
     heroes.clear();
-    
-    Hero hero1("Ralle", 10, 2);
-    Hero hero2("Bob", 12, 3);
-    Hero hero3("Luna", 8, 4);
-    Hero hero4("Tjalfe", 14, 1);
+
+    Hero hero1("Frodo", 10, 2);
+    Hero hero2("Gandalf", 12, 3);
+    Hero hero3("Aragorn", 8, 4);
+    Hero hero4("Legolas", 14, 1);
 
     heroes.push_back(hero1);
     heroes.push_back(hero2);
