@@ -1,4 +1,7 @@
-#include "Soft_1.h"
+#include "GameMaster.h"
+#include "Fjende.h"
+#include "Hero.h"
+#include "Karakter.h"
 #include <iostream>
 
 using namespace std;
