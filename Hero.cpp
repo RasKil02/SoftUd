@@ -1,3 +1,4 @@
+#pragma once
 #include "Hero.h"
 #include "Fjende.h"
 #include "GameMaster.h"
@@ -54,10 +55,6 @@ int Hero::getLevel() const {
 
 int Hero::getMaxHp() const {
     return maxHp;
-}
-
-const vector<Fjende>& GameMaster::getFjender() const {
-    return fjender;
 }
 
 Hero::~Hero() {}
