@@ -1,7 +1,4 @@
-#pragma once
 #include "Hero.h"
-#include "Fjende.h"
-#include "GameMaster.h"
 #include <string>
 #include <iostream>
 #include <vector>

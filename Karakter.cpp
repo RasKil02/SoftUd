@@ -1,4 +1,3 @@
-#pragma once
 #include "Karakter.h"
 #include <iostream>
 using namespace std;
@@ -43,3 +42,4 @@ void Karakter::setHp(int nyHp) {
     hp = nyHp;
 }
 
+Karakter::~Karakter() {}

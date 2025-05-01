@@ -1,4 +1,3 @@
-#pragma once
 #include "Fjende.h"
 
 Fjende::Fjende() {}

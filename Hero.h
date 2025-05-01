@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HERO_H
+#define HERO_H
 #include "Karakter.h"
 #include <string>
 
@@ -13,9 +14,11 @@ class Hero : public Karakter {
         int getStyrke() const;
         int getLevel() const;
         int getMaxHp() const;
-        ~Hero();
+        virtual ~Hero();
     private:
         int xp = 0;
         int level = 1;
         int maxHp;
     };
+
+#endif

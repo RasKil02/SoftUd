@@ -1,3 +1,5 @@
+#ifndef KARAKTER_H
+#define KARAKTER_H
 #include <string>
 using namespace std;
 
@@ -19,3 +21,5 @@ class Karakter {
         int styrke;
     
     };
+
+#endif 

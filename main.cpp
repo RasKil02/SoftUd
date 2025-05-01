@@ -1,8 +1,4 @@
 #include "GameMaster.h"
-#include "Fjende.h"
-#include "Hero.h"
-#include "Karakter.h"
-#include "GameMaster.h"
 #include <iostream>
 #include <vector>
 

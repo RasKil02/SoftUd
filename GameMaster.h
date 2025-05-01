@@ -1,3 +1,5 @@
+#ifndef GAMEMASTER_H
+#define GAMEMASTER_H
 #include <string>
 #include <vector>
 #include "Fjende.h"
@@ -20,3 +22,4 @@ class GameMaster {
         vector<Hero> heroes;
     };
 
+#endif

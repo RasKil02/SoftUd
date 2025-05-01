@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FJENDE_H
+#define FJENDE_H
 #include "Karakter.h"
 using namespace std;
 
@@ -7,8 +8,9 @@ class Fjende : public Karakter {
         Fjende();
         Fjende(string, int, int, int);
         int givXp();
-        ~Fjende();
+        virtual ~Fjende();
     protected:
         int xp;
     };
-    
+
+    #endif
