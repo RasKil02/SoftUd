@@ -7,11 +7,11 @@ class Karakter {
     public:
         Karakter();
         Karakter(string, int, int);
-        int angreb();
+        virtual int angreb();
         int mistHP(int skade);
-        string getNavn() const;
-        int getHP() const;
-        int getStyrke() const;
+        virtual string getNavn() const;
+        virtual int getHP() const;
+        virtual int getStyrke() const;
         void setHp(int);
         virtual ~Karakter();
     

@@ -29,7 +29,6 @@ int Hero::modtagXp(int modtagXp) {
     while (xp >= (level * 1000)) 
     {  
         levelUp(); 
-        cout << "Du er steget i level" << endl;
     }
     return xp;
 }
@@ -45,6 +44,7 @@ int Hero::getHP() const {
 int Hero::getStyrke() const {
     return styrke;
 }
+
 
 int Hero::getLevel() const {
     return level;
