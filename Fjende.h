@@ -7,7 +7,7 @@ class Fjende : public Karakter {
     public:
         Fjende();
         Fjende(string, int, int, int);
-        bool iLive();
+        bool iLive() const;
         int givXp();
         virtual ~Fjende();
     protected:

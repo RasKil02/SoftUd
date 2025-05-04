@@ -11,6 +11,7 @@ class Grotte {
         Grotte(string, int);
         string getNavn() const;
         int getGold() const;
+        vector<Fjende>& getFjender();
         bool alleFjenderDraebt();
         ~Grotte();
 
