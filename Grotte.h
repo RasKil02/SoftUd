@@ -8,6 +8,7 @@ using namespace std;
 class Grotte {
     public:
         Grotte();
+        Grotte(string, int);
         string getNavn() const;
         int getGold() const;
         bool alleFjenderDraebt();
