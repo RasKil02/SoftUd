@@ -13,4 +13,4 @@ class Fjende : public Karakter {
         int xp;
     };
 
-    #endif
+#endif
