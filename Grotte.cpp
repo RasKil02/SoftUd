@@ -20,7 +20,13 @@ vector <Fjende>& Grotte::getFjender() {
 }
 
 bool Grotte::alleFjenderDraebt() {
+    for (Fjende& f : fjender) {
+        if (f.iLive()) {
+            return false;
+        }
 
+    }
+    return true;
 }
 
 Grotte::~Grotte() {}
