@@ -27,7 +27,7 @@ void GameMaster::loadHero() {
     heroes.push_back(hero4);
 }
 
-void GameMaster::startKamp(Hero& helt, Fjende fjende) {
+void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
     if (heroes.empty()) {
         cout << "Ingen heroes tilgængelige. Opret en først!\n";
         return;

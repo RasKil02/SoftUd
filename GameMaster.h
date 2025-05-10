@@ -14,7 +14,7 @@ class GameMaster {
         void nyHero();
         void loadHero();
         vector<Hero>& getHeroes();
-        void startKamp();
+        void startKamp(Hero& helt, Fjende& fjende);
         ~GameMaster();
     
     protected:

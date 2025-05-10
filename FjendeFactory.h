@@ -7,6 +7,7 @@ class FjendeFactory
 {
 public:
     static Fjende createFjende(int heroLevel);
+    static vector<Fjende> createFjender(int heroLevel, int antal);
 };
 
 #endif

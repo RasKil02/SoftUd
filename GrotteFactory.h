@@ -3,10 +3,11 @@
 #include "Grotte.h"
 #include "FjendeFactory.h"
 #include "Hero.h"
+#include <vector>
 
 class GrotteFactory {
 public:
-    static vector<Grotte> createGrotte(int antal);
+    static vector<Grotte> createGrotte(int antal, int fjendeAntal, int heroLevel);
 };
 
 

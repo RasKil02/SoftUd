@@ -11,7 +11,7 @@ bool Fjende::iLive() const {
     return true;
 }
 
-int Fjende::givXp() {
+int Fjende::givXp() const {
     return xp;
 }
 
