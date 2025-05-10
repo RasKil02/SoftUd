@@ -1,4 +1,3 @@
-#pragma once
 #include "GameMaster.h"
 #include <iostream>
 #include <vector>
@@ -28,26 +27,6 @@ void GameMaster::loadHero() {
     heroes.push_back(hero4);
 }
 
-void GameMaster::opretFjender() {
-    Fjende f1("Hest", 4, 1, 100);
-    Fjende f2("Weak Goblin", 4, 2, 200);
-    Fjende f3("Strong Goblin", 8, 3, 400);
-    Fjende f4("Stronger Goblin", 10, 4, 500);
-    Fjende f5("Den stærkeste Goblin", 15, 5, 800);
-    Fjende f6("Abe Kongen", 30, 5, 1000);
-    Fjende f7("Enhjørning", 50, 8, 1500);
-    Fjende f8("Drage", 100, 10, 3000);
-
-    fjender.push_back(f1);
-    fjender.push_back(f2);
-    fjender.push_back(f3);
-    fjender.push_back(f4);
-    fjender.push_back(f5);
-    fjender.push_back(f6);
-    fjender.push_back(f7);
-    fjender.push_back(f8);
-}
-
 void GameMaster::startKamp() {
     if (heroes.empty()) {
         cout << "Ingen heroes tilgængelige. Opret en først!\n";
@@ -71,49 +50,31 @@ void GameMaster::startKamp() {
 
     Hero& valgtHero = heroes[heroValg - 1];
 
-    if (fjender.empty()) {
-        cout << "Ingen fjender oprettet.\n";
-        return;
-    }
+    Fjende fjende = fjendeFactory.createFjende(valgtHero.getLevel());
 
-    cout << "\n-- Vælg en Fjende --\n";
-    for (size_t i = 0; i < fjender.size(); ++i) {
-        const Fjende& f = fjender[i];
-        cout << i + 1 << ". " << f.getNavn()
-             << " (HP: " << f.getHP() << ", Styrke: " << f.getStyrke() << ")\n";
-    }
+    cout << "\nDu møder en fjende: " << fjende.getNavn()
+         << " (HP: " << fjende.getHP()
+         << ", Styrke: " << fjende.getStyrke() << ")\n";
+    cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << fjende.getNavn() << "!\n";
 
-    int fjendeValg;
-    cout << "Indtast nummeret på fjenden: ";
-    cin >> fjendeValg;
-
-    if (fjendeValg < 1 || fjendeValg > (int)fjender.size()) {
-        cout << "Ugyldigt valg.\n";
-        return;
-    }
-
-    Fjende valgtFjende = fjender[fjendeValg - 1];
-
-    cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << valgtFjende.getNavn() << "!\n";
-
-    while (valgtHero.getHP() > 0 && valgtFjende.getHP() > 0) {
+    while (valgtHero.getHP() > 0 && fjende.getHP() > 0) {
         // Helt angriber fjenden
         int skadeTilFjende = valgtHero.angreb();
-        cout << valgtHero.getNavn() << " angriber " << valgtFjende.getNavn()
+        cout << valgtHero.getNavn() << " angriber " << fjende.getNavn()
              << " med " << skadeTilFjende << " skade." << endl;
-        if (valgtFjende.mistHP(skadeTilFjende) == 0) {
-            valgtHero.modtagXp(valgtFjende.givXp());
+        if (fjende.mistHP(skadeTilFjende) == 0) {
+            valgtHero.modtagXp(fjende.givXp());
             valgtHero.setHp(valgtHero.getMaxHp());
             cout << valgtHero.getNavn() << " vandt kampen!\n";
             break;
         }
 
         // Fjende angriber helten
-        int skadeTilHero = valgtFjende.angreb();
-        cout << valgtFjende.getNavn() << " angriber " << valgtHero.getNavn()
+        int skadeTilHero = fjende.angreb();
+        cout << fjende.getNavn() << " angriber " << valgtHero.getNavn()
              << " med " << skadeTilHero << " skade." << endl;
         if (valgtHero.mistHP(skadeTilHero) == 0) {
-            cout << valgtFjende.getNavn() << " vandt kampen!\n";
+            cout << fjende.getNavn() << " vandt kampen!\n";
             break;
         }
     }
@@ -123,8 +84,5 @@ vector<Hero>& GameMaster::getHeroes() {
     return heroes;
 }
 
-const vector<Fjende>& GameMaster::getFjender() const {
-    return fjender;
-}
 
 GameMaster::~GameMaster() {}

@@ -4,6 +4,7 @@
 #include <vector>
 #include "Fjende.h"
 #include "Hero.h"
+#include "FjendeFactory.h"
 using namespace std;
 
 class GameMaster { 
@@ -11,15 +12,13 @@ class GameMaster {
         GameMaster();
         void nyHero();
         void loadHero();
-        void opretFjender();
-        const vector<Fjende>& getFjender() const;
         vector<Hero>& getHeroes();
         void startKamp();
         ~GameMaster();
     
     protected:
-        vector<Fjende> fjender;
         vector<Hero> heroes;
+        FjendeFactory fjendeFactory;
     };
 
 #endif

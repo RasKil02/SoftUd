@@ -19,11 +19,11 @@ Fjende FjendeFactory::createFjende(int heroLevel) {
     }
 
 
-    // Vælg navn tilfældigt
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> navnDist(0, navne.size() - 1);
-    std::string navn = navne[navnDist(gen)];
+    // Vælg navn tilfældigt fra vector/liste ovenover
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> navnDist(0, navne.size() - 1); // Vælger navn fra vector
+    string navn = navne[navnDist(gen)];
 
     // Fjenders stats baseret på Hero level
     hp = 5 * heroLevel + (rand() % 5);
