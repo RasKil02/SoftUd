@@ -6,7 +6,7 @@
 
 class GrotteFactory {
 public:
-    static Grotte createGrotte(const Hero& hero);
+    static vector<Grotte> createGrotte(int antal);
 };
 
 

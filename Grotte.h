@@ -6,19 +6,16 @@
 using namespace std;
 
 class Grotte {
-    public:
-        Grotte();
-        Grotte(string, int);
+public:
+        Grotte(const string& navn, const vector<Fjende>& fjender);
+        void visFjender() const;
+        const vector<Fjende>& getFjender() const;
         string getNavn() const;
-        int getGold() const;
-        vector<Fjende>& getFjender();
-        bool alleFjenderDraebt();
-        ~Grotte();
 
-    private:
-        string navn;
-        int gold;
-        vector<Fjende> fjender;
+private:
+    string navn;
+    vector<Fjende> fjender;
+
 };
 
 #endif

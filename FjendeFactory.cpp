@@ -32,3 +32,11 @@ Fjende FjendeFactory::createFjende(int heroLevel) {
 
     return Fjende(navn, hp, styrke, xp);
 }
+
+vector<Fjende> FjendeFactory::createFjender(int heroLevel, int antal) {
+    vector<Fjende> fjender;
+    for (int i = 0; i < antal; ++i) {
+        fjender.push_back(createFjende(heroLevel));
+    }
+    return fjender;
+}
