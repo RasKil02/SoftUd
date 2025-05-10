@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 
+
 int main() {
     GameMaster gm;
 
@@ -36,7 +37,7 @@ int main() {
                     for (size_t i = 0; i < heroes.size(); ++i) {
                         cout << i + 1 << ". " << heroes[i].getNavn()
                              << " (HP: " << heroes[i].getHP()
-                             << ", Styrke: " << heroes[i].getStyrke() << endl;
+                             << ", Styrke: " << heroes[i].getStyrke() << ")\n";
                     }
                     int hvalg;
                     cout << "Indtast nummer på den hero du vil vælge: ";
@@ -59,21 +60,39 @@ int main() {
                 cout << "Ugyldigt valg.\n";
         }
 
-
+        // Hero valgt → gå ind i grotter og kæmp
         while (aktivHero != nullptr) {
-            gm.startKamp();  // Brug GameMasters kampfunktion
-        
-            cout << "\nVil du kæmpe igen eller gå til hovedmenu?\n";
-            cout << "1. Kæmp igen\n";
-            cout << "2. Gå til hovedmenu\n";
-            int valg;
-            cin >> valg;
-            if (valg == 2) {
-                aktivHero = nullptr;
+            // Opret 2 grotter med 3 fjender hver
+            vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero->getLevel());
+
+            for (const auto& grotte : grotter) {
+                cout << "\n-- Du går ind i " << grotte.getNavn() << " --\n";
+                const vector<Fjende>& fjender = grotte.getFjender();
+
+                for (const auto& fjende : fjender) {
+                    gm.startKamp(*aktivHero, fjende); 
+                    if (aktivHero->getHP() <= 0) {
+                        cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
+                        aktivHero = nullptr;
+                        break;
+                    }
+                }
+
+                if (aktivHero == nullptr) break;
+            }
+
+            if (aktivHero != nullptr) {
+                cout << "\nVil du gå ind i flere grotter?\n";
+                cout << "1. Ja\n";
+                cout << "2. Gå til hovedmenu\n";
+                int valg;
+                cin >> valg;
+                if (valg == 2) {
+                    aktivHero = nullptr;
+                }
             }
         }
     }
 
     return 0;
-    
 }

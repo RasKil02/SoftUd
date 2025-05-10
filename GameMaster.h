@@ -5,6 +5,7 @@
 #include "Fjende.h"
 #include "Hero.h"
 #include "FjendeFactory.h"
+#include "GrotteFactory.h"
 using namespace std;
 
 class GameMaster { 
