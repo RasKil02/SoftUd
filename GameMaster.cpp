@@ -50,8 +50,6 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
 
     Hero& valgtHero = heroes[heroValg - 1];
 
-    Fjende fjende = fjendeFactory.createFjende(valgtHero.getLevel());
-
     cout << "\nDu møder en fjende: " << fjende.getNavn()
          << " (HP: " << fjende.getHP()
          << ", Styrke: " << fjende.getStyrke() << ")\n";

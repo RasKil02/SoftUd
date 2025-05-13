@@ -2,6 +2,7 @@
 #define FJENDEFACTORY_H
 #include "Fjende.h"
 #include <vector>
+#include <string>
 
 class FjendeFactory
 {

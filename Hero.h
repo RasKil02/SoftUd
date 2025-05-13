@@ -9,11 +9,11 @@ class Hero : public Karakter {
         Hero(string, int, int);
         int levelUp();
         int modtagXp(int);
-        int getLevel() const;
+        int getLevel() const;   
         int getMaxHp() const;
-        virtual string getNavn() const;
-        virtual int getHP() const;
-        virtual int getStyrke() const;
+        string getNavn() const override;
+        int getHP() const override;
+        int getStyrke() const override;
         virtual ~Hero();
     private:
         int xp = 0;

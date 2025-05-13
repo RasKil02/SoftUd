@@ -42,7 +42,7 @@ int main() {
                     int hvalg;
                     cout << "Indtast nummer på den hero du vil vælge: ";
                     cin >> hvalg;
-                    if (hvalg >= 1 && hvalg <= heroes.size()) {
+                    if (hvalg >= 1 && hvalg <= static_cast<size_t>(heroes.size())) {
                         aktivHero = &gm.getHeroes()[hvalg - 1];
                         cout << "Hero valgt: " << aktivHero->getNavn() << endl;
                     } else {
@@ -69,8 +69,9 @@ int main() {
                 cout << "\n-- Du går ind i " << grotte.getNavn() << " --\n";
                 const vector<Fjende>& fjender = grotte.getFjender();
 
-                for (const auto& fjende : fjender) {
-                    gm.startKamp(*aktivHero, fjende); 
+                for (auto& fjende : grotte.getFjender()) {
+                    Fjende kopiAfFjende = fjende;  // Opret en kopi
+                    gm.startKamp(*aktivHero, kopiAfFjende);  // Send kopien
                     if (aktivHero->getHP() <= 0) {
                         cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
                         aktivHero = nullptr;
