@@ -67,7 +67,12 @@ int main() {
 
             for (const auto& grotte : grotter) {
                 cout << "\n-- Du går ind i " << grotte.getNavn() << " --\n";
+                cout << "\n -- med følgende fjender: ";
                 const vector<Fjende>& fjender = grotte.getFjender();
+                for (const auto& fjende : fjender) {
+                    cout << fjende.getNavn() << " (" << fjende.getHP() << " HP, " << fjende.getStyrke() << " Styrke), ";
+                }
+                cout << " --" << endl;
 
                 for (auto& fjende : grotte.getFjender()) {
                     Fjende kopiAfFjende = fjende;  // Opret en kopi
