@@ -15,6 +15,7 @@ class GameMaster {
         void loadHero();
         vector<Hero>& getHeroes();
         void startKamp(Hero& helt, Fjende& fjende);
+        void startGrotte(Hero* aktivHero);
         ~GameMaster();
     
     protected:

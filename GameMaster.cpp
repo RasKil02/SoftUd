@@ -78,8 +78,9 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
     }
 }
 
+// startGrotte funktion til 2. iteration
 void GameMaster::startGrotte(Hero* aktivHero) {
-    while (aktivHero = nullptr) {
+    while (aktivHero != nullptr) {
         vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero -> getLevel());
 
         bool iGrotte = true;
@@ -124,6 +125,5 @@ void GameMaster::startGrotte(Hero* aktivHero) {
 vector<Hero>& GameMaster::getHeroes() {
     return heroes;
 }
-
 
 GameMaster::~GameMaster() {}

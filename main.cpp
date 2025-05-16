@@ -1,4 +1,7 @@
+#pragma message("Inkluderer GameMaster.h her")
 #include "GameMaster.h"
+#include "Hero.h"
+#include "Fjende.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -43,7 +46,7 @@ int main() {
                     int hvalg;
                     cout << "Indtast nummer på den hero du vil vælge: ";
                     cin >> hvalg;
-                    if (hvalg >= 1 && hvalg <= static_cast<size_t>(heroes.size())) {
+                    if (hvalg >= 1 && static_cast<size_t>(hvalg) <= heroes.size()) {
                         aktivHero = &gm.getHeroes()[hvalg - 1];
                         cout << "Hero valgt: " << aktivHero->getNavn() << endl;
                     } else {
