@@ -59,42 +59,55 @@ int main() {
             default:
                 cout << "Ugyldigt valg.\n";
         }
+    }
 
-        // Hero valgt → gå ind i grotter og kæmp
-        while (aktivHero != nullptr) {
-            // Opret 2 grotter med 3 fjender hver
-            vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero->getLevel());
+    // Hero valgt → gå ind i grotter og kæmp
+    while (aktivHero != nullptr) {
+        vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero->getLevel());
 
-            for (const auto& grotte : grotter) {
-                cout << "\n-- Du går ind i " << grotte.getNavn() << " --\n";
-                cout << "\n -- med følgende fjender: ";
-                const vector<Fjende>& fjender = grotte.getFjender();
-                for (const auto& fjende : fjender) {
-                    cout << fjende.getNavn() << " (" << fjende.getHP() << " HP, " << fjende.getStyrke() << " Styrke), ";
+        bool iGrotte = true;
+        while (iGrotte) {
+            cout << "\n-- Tilgængelige grotter --\n";
+            for (size_t i = 0; i < grotter.size(); ++i) {
+                cout << i + 1 << ". " << grotter[i].getNavn() << endl;
+            }
+            cout << "0. Gå til hovedmenu\n";
+
+            int valg;
+            cout << "Vælg en grotte: ";
+            cin >> valg;
+
+            if (valg == 0) {
+                aktivHero = nullptr;
+                break;
+            }
+
+            if (valg < 1 || valg > static_cast<int>(grotter.size())) {
+                cout << "Ugyldigt valg.\n";
+                continue;
+            }
+
+            Grotte& valgtGrotte = grotter[valg - 1];
+            cout << "\n-- Du går ind i " << valgtGrotte.getNavn() << " --\n";
+            valgtGrotte.visFjender();
+
+            for (auto& fjende : valgtGrotte.getFjender()) {
+                Fjende kopiAfFjende = fjende; 
+                gm.startKamp(*aktivHero, kopiAfFjende);
+                if (aktivHero->getHP() <= 0) {
+                    cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
+                    aktivHero = nullptr;
+                    iGrotte = false;
+                    break;
                 }
-                cout << " --" << endl;
-
-                for (auto& fjende : grotte.getFjender()) {
-                    Fjende kopiAfFjende = fjende;  // Opret en kopi
-                    gm.startKamp(*aktivHero, kopiAfFjende);  // Send kopien
-                    if (aktivHero->getHP() <= 0) {
-                        cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
-                        aktivHero = nullptr;
-                        break;
-                    }
-                }
-
-                if (aktivHero == nullptr) break;
             }
 
             if (aktivHero != nullptr) {
-                cout << "\nVil du gå ind i flere grotter?\n";
-                cout << "1. Ja\n";
-                cout << "2. Gå til hovedmenu\n";
-                int valg;
+                cout << "\nVil du udforske en anden grotte?\n1. Ja\n2. Gå til hovedmenu\nValg: ";
                 cin >> valg;
                 if (valg == 2) {
                     aktivHero = nullptr;
+                    break;
                 }
             }
         }
