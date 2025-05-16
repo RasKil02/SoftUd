@@ -78,6 +78,49 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
     }
 }
 
+void GameMaster::startGrotte(Hero* aktivHero) {
+    while (aktivHero = nullptr) {
+        vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero -> getLevel());
+
+        bool iGrotte = true;
+        while (iGrotte) {
+            cout << "Du kan gå ind i følgende grotter: ";
+            for (size_t i = 0; i < grotter.size(); i++) {
+                cout << i + 1 << ". " << grotter[i].getNavn() << endl;
+                // grotter[i].visFjender() << endl;      !!!kan ikke udskrive en vector!!!
+            }
+            cout << "0. Gå til Hovedmenu " << endl;
+            
+            int valg;
+            cout << "Vælg grotte: " << endl;
+            cin >> valg;
+
+            if (valg == 0) {
+                break;
+            }
+
+            if (valg < 1 || valg > static_cast<int>(grotter.size())) {
+                cout << " Du har valgt en ugyldig grotte... Prøv igen" << endl;
+                continue;;
+            }
+
+            Grotte& valgtGrotte = grotter[valg - 1];
+            cout << "Du går nu ind i: " << valgtGrotte.getNavn() << endl;
+            cout << "Grotten har følgende fjender: " << endl;
+            valgtGrotte.visFjender();
+
+            for (auto& fjende : valgtGrotte.getFjender()) {
+                Fjende kopiAfFjende = fjende;
+                startKamp(*aktivHero, kopiAfFjende);
+                if (aktivHero->getHP() <= 0) {
+                    cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
+                    return;
+                }
+            }
+        }
+    }
+}
+
 vector<Hero>& GameMaster::getHeroes() {
     return heroes;
 }
