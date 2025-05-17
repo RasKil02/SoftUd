@@ -54,4 +54,8 @@ int Hero::getMaxHp() const {
     return maxHp;
 }
 
+int Hero::getGold() const {
+    return gold;
+}
+
 Hero::~Hero() {}

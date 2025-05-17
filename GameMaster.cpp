@@ -94,6 +94,11 @@ void GameMaster::startGrotte(Hero* aktivHero) {
                     cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
                     return;
                 }
+
+                if (valgtGrotte.alleFjenderDraebt() == true) {
+                    cout << "Du har besejret alle fjender i denne grotte og modtager: " << valgtGrotte.getGold() << " gold" << endl;
+                    aktivHero ->addGold(valgtGrotte.getGold());
+                }
             }
         }
     }

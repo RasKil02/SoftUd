@@ -14,11 +14,14 @@ class Hero : public Karakter {
         string getNavn() const override;
         int getHP() const override;
         int getStyrke() const override;
+        int getGold() const; 
+        int addGold(int);
         virtual ~Hero();
     private:
         int xp = 0;
         int level = 1;
         int maxHp;
+        int gold = 0;
     };
 
 #endif

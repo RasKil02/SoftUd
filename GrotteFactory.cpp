@@ -7,7 +7,7 @@ vector<Grotte> GrotteFactory::createGrotte(int antal, int fjendeAntal, int heroL
 
     vector<string> navne = {
         "The cave of Lich King",
-        "The cave og Cataclysm",
+        "The cave of Cataclysm",
         "Pandarias cave", 
         "Burning Crusades",
         "The Warlords of Dreanor",
@@ -18,11 +18,13 @@ vector<Grotte> GrotteFactory::createGrotte(int antal, int fjendeAntal, int heroL
     random_device rd;
     mt19937 g(rd());
     shuffle(navne.begin(), navne.end(), g);
+    uniform_int_distribution<int> goldDistributer(50,200);
 
     for (int i = 0; i < antal; ++i) {
         vector<Fjende> fjender = FjendeFactory::createFjender(heroLevel, fjendeAntal);
         string navn = navne[i % navne.size()];
-        grotter.emplace_back(navn, fjender);
+        int goldBelønning = goldDistributer(g);
+        grotter.emplace_back(navn, fjender, goldBelønning);
     }
 
     return grotter;
