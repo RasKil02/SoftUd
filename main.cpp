@@ -1,4 +1,3 @@
-#pragma message("Inkluderer GameMaster.h her")
 #include "GameMaster.h"
 #include "Hero.h"
 #include "Fjende.h"

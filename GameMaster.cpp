@@ -28,55 +28,32 @@ void GameMaster::loadHero() {
 }
 
 void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
-    if (heroes.empty()) {
-        cout << "Ingen heroes tilgængelige. Opret en først!\n";
-        return;
-    }
-
-    cout << "\n-- Vælg en Hero --\n";
-    for (size_t i = 0; i < heroes.size(); ++i) {
-        cout << i + 1 << ". " << heroes[i].getNavn()
-             << " (HP: " << heroes[i].getHP() << ", Styrke: " << heroes[i].getStyrke() << ")\n";
-    }
-
-    int heroValg;
-    cout << "Indtast nummeret på din Hero: ";
-    cin >> heroValg;
-
-    if (heroValg < 1 || heroValg > (int)heroes.size()) {
-        cout << "Ugyldigt valg.\n";
-        return;
-    }
-
-    Hero& valgtHero = heroes[heroValg - 1];
-
     cout << "\nDu møder en fjende: " << fjende.getNavn()
          << " (HP: " << fjende.getHP()
          << ", Styrke: " << fjende.getStyrke() << ")\n";
-    cout << "\nKAMP STARTER! " << valgtHero.getNavn() << " VS " << fjende.getNavn() << "!\n";
+    cout << "\nKAMP STARTER! " << helt.getNavn() << " VS " << fjende.getNavn() << "!\n";
 
-    while (valgtHero.getHP() > 0 && fjende.getHP() > 0) {
-        // Helt angriber fjenden
-        int skadeTilFjende = valgtHero.angreb();
-        cout << valgtHero.getNavn() << " angriber " << fjende.getNavn()
+    while (helt.getHP() > 0 && fjende.getHP() > 0) {
+        int skadeTilFjende = helt.angreb();
+        cout << helt.getNavn() << " angriber " << fjende.getNavn()
              << " med " << skadeTilFjende << " skade." << endl;
         if (fjende.mistHP(skadeTilFjende) == 0) {
-            valgtHero.modtagXp(fjende.givXp());
-            valgtHero.setHp(valgtHero.getMaxHp());
-            cout << valgtHero.getNavn() << " vandt kampen!\n";
+            helt.modtagXp(fjende.givXp());
+            helt.setHp(helt.getMaxHp());
+            cout << helt.getNavn() << " vandt kampen!\n";
             break;
         }
 
-        // Fjende angriber helten
         int skadeTilHero = fjende.angreb();
-        cout << fjende.getNavn() << " angriber " << valgtHero.getNavn()
+        cout << fjende.getNavn() << " angriber " << helt.getNavn()
              << " med " << skadeTilHero << " skade." << endl;
-        if (valgtHero.mistHP(skadeTilHero) == 0) {
+        if (helt.mistHP(skadeTilHero) == 0) {
             cout << fjende.getNavn() << " vandt kampen!\n";
             break;
         }
     }
 }
+
 
 // startGrotte funktion til 2. iteration
 void GameMaster::startGrotte(Hero* aktivHero) {
@@ -85,7 +62,7 @@ void GameMaster::startGrotte(Hero* aktivHero) {
 
         bool iGrotte = true;
         while (iGrotte) {
-            cout << "Du kan gå ind i følgende grotter: ";
+            cout << "Du kan gå ind i følgende grotter: " << endl;;
             for (size_t i = 0; i < grotter.size(); i++) {
                 cout << i + 1 << ". " << grotter[i].getNavn() << endl;
                 // grotter[i].visFjender() << endl;      !!!kan ikke udskrive en vector!!!
@@ -97,7 +74,7 @@ void GameMaster::startGrotte(Hero* aktivHero) {
             cin >> valg;
 
             if (valg == 0) {
-                break;
+                return;
             }
 
             if (valg < 1 || valg > static_cast<int>(grotter.size())) {
