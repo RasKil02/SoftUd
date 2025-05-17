@@ -58,4 +58,8 @@ int Hero::getGold() const {
     return gold;
 }
 
+int Hero::addGold(int mængde) {
+    gold += mængde;
+    return gold;
+}
 Hero::~Hero() {}

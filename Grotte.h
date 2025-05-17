@@ -7,13 +7,16 @@ using namespace std;
 
 class Grotte {
 public:
-        Grotte(const string& navn, const vector<Fjende>& fjender);
+        Grotte(const string& navn, const vector<Fjende>& fjender, int gold);
         void visFjender() const;
         const vector<Fjende>& getFjender() const;
         string getNavn() const;
+        int getGold() const;
+        bool alleFjenderDraebt() const;
 
 private:
     string navn;
+    int gold;
     vector<Fjende> fjender;
 
 };

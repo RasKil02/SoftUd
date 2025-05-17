@@ -1,8 +1,8 @@
 #include "Grotte.h"
 #include <iostream>
 
-Grotte::Grotte(const string& navn, const vector<Fjende>& fjender, int goldbelønning)
-    : navn(navn), fjender(fjender), goldBelønning(goldBelønning) {}
+Grotte::Grotte(const string& navn, const vector<Fjende>& fjender, int goldBelønning)
+    : navn(navn), fjender(fjender), gold(goldBelønning) {}
 
 void Grotte::visFjender() const {
     for (const auto& f : fjender) {
@@ -19,7 +19,7 @@ string Grotte::getNavn() const {
 }
 
 int Grotte::getGold() const {
-    return goldBelønning;
+    return gold;
 }
 
 bool Grotte::alleFjenderDraebt() const {
@@ -28,6 +28,6 @@ bool Grotte::alleFjenderDraebt() const {
         if (fjende.iLive() == true) {
             return false;
         }
-        return true;
     }
+    return true;
 }
