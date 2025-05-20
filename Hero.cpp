@@ -62,4 +62,5 @@ int Hero::addGold(int mængde) {
     gold += mængde;
     return gold;
 }
+
 Hero::~Hero() {}
