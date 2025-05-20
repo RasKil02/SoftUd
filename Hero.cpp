@@ -23,9 +23,14 @@ int Hero::levelUp() {
     return level;
 }
 
+int Hero::getXp() {
+    return xp;
+}
+
 int Hero::modtagXp(int modtagXp) {
     xp += modtagXp;
     cout <<"Du har modtaget " << modtagXp << " XP!\n";
+    cout << "Du har nu: " << xp << " xp" << endl;
     while (xp >= (level * 1000)) 
     {  
         levelUp(); 

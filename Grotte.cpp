@@ -10,7 +10,7 @@ void Grotte::visFjender() const {
     }
 }
 
-const vector<Fjende>& Grotte::getFjender() {
+vector<Fjende>& Grotte::getFjender() {
     return fjender;
 }
 

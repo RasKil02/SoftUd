@@ -26,11 +26,11 @@ Fjende FjendeFactory::createFjende(int heroLevel) {
     if (navn == "Hest") {
         baseHp = 2; baseStyrke = 1;
     } else if (navn == "Weak Goblin") {
-        baseHp = 3; baseStyrke = 2;
+        baseHp = 3; baseStyrke = 1;
     } else if (navn == "Strong Goblin") {
-        baseHp = 4; baseStyrke = 3;
+        baseHp = 4; baseStyrke = 2;
     } else if (navn == "Stronger Goblin") {
-        baseHp = 5; baseStyrke = 4;
+        baseHp = 5; baseStyrke = 3;
     } else if (navn == "Den stærkeste Goblin") {
         baseHp = 6; baseStyrke = 5;
     } else if (navn == "Abe Kongen") {

@@ -88,8 +88,8 @@ void GameMaster::startGrotte(Hero* aktivHero) {
             valgtGrotte.visFjender();
 
             for (auto& fjende : valgtGrotte.getFjender()) {
-                Fjende kopiAfFjende = fjende;
-                startKamp(*aktivHero, kopiAfFjende);
+                Fjende& aktivFjende = fjende;
+                startKamp(*aktivHero, aktivFjende);
                 if (aktivHero->getHP() <= 0) {
                     cout << "Din helt er besejret! Tilbage til hovedmenu.\n";
                     return;
@@ -99,6 +99,7 @@ void GameMaster::startGrotte(Hero* aktivHero) {
             if (valgtGrotte.alleFjenderDraebt() == true) {
                 cout << "Du har besejret alle fjender i denne grotte og modtager: " << valgtGrotte.getGold() << " gold" << endl;
                 aktivHero ->addGold(valgtGrotte.getGold());
+                cout << "Du har: " << aktivHero->getGold() << " gold" << endl;
             }
         }
     }
