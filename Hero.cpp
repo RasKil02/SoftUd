@@ -12,13 +12,15 @@ Hero::Hero(string n, int h, int s) : Karakter(n, h, s) {
 }
 
 int Hero::levelUp() {
-    if (xp >= (level * 1000))
-    {
+    if (xp >= (level * 1000)) {
         level += 1;
         hp += 2;
         styrke += 1;
         hp = maxHp;
-        cout << navn << " er steget i level" << endl;
+        xp -= level * 1000;
+        cout << "----------------- LEVEL UP -----------------" << endl;
+        cout << navn << " er steget i level og er nu i level " << level << endl;
+        cout << navn << " Har nu: " << hp << " hp og " << styrke << " styrke" << endl;
     }
     return level;
 }

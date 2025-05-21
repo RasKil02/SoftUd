@@ -6,7 +6,8 @@ GameMaster::GameMaster() {}
 
 void GameMaster::nyHero() {
     string navn;
-    cout << "Indtast navn på Hero: ";
+    cout << "--------- Oprettelse af nu Hero ----------" << endl;
+    cout << "Indtast ønskede navn på Hero: ";
     cin >> navn;
     Hero hero(navn, 10, 2);
     heroes.push_back(hero);
@@ -62,6 +63,7 @@ void GameMaster::startGrotte(Hero* aktivHero) {
 
         bool iGrotte = true;
         while (iGrotte) {
+            cout << "---------- Vælg Grotte ----------" << endl;
             cout << "Du kan gå ind i følgende grotter: " << endl;;
             for (size_t i = 0; i < grotter.size(); i++) {
                 cout << i + 1 << ". " << grotter[i].getNavn() << endl;
@@ -97,6 +99,7 @@ void GameMaster::startGrotte(Hero* aktivHero) {
             }
 
             if (valgtGrotte.alleFjenderDraebt() == true) {
+                cout << "---------- Godt kæmpet ----------" << endl;
                 cout << "Du har besejret alle fjender i denne grotte og modtager: " << valgtGrotte.getGold() << " gold" << endl;
                 aktivHero ->addGold(valgtGrotte.getGold());
                 cout << "Du har: " << aktivHero->getGold() << " gold" << endl;
