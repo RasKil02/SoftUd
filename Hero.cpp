@@ -25,7 +25,7 @@ int Hero::levelUp() {
     return level;
 }
 
-int Hero::getXp() {
+int Hero::getXp() const {
     return xp;
 }
 
@@ -51,7 +51,6 @@ int Hero::getHP() const {
 int Hero::getStyrke() const {
     return styrke;
 }
-
 
 int Hero::getLevel() const {
     return level;

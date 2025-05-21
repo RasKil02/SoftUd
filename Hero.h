@@ -8,6 +8,7 @@ class Hero : public Karakter {
         Hero();
         Hero(string, int, int);
         int levelUp();
+        int getXp() const;
         int modtagXp(int);
         int getLevel() const;   
         int getMaxHp() const;

@@ -10,5 +10,4 @@ public:
     static vector<Grotte> createGrotte(int antal, int fjendeAntal, int heroLevel);
 };
 
-
 #endif
