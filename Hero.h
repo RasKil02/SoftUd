@@ -17,12 +17,18 @@ class Hero : public Karakter {
         int getStyrke() const override;
         int getGold() const; 
         int addGold(int);
+        int getId() const;
+        void setId(int nyId);
+        int getVåbenId() const;
+        void setVåbenId(int nyVåbenId);
         virtual ~Hero();
     private:
         int xp = 0;
         int level = 1;
         int maxHp;
         int gold = 0;
+        int id;
+        int våbenId;
     };
 
 #endif

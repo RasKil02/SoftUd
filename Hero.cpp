@@ -69,4 +69,20 @@ int Hero::addGold(int mængde) {
     return gold;
 }
 
+int Hero::getId() const {
+    return id;
+}
+
+void Hero::setId(int nyId) {
+    id = nyId;
+}
+
+int Hero::getVåbenId() const {
+    return våbenId;
+}
+
+void Hero::setVåbenId(int nyVåbenId) {
+    våbenId = nyVåbenId;
+}
+
 Hero::~Hero() {}

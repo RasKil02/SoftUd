@@ -31,6 +31,24 @@ void Database::tilføjHeroIgen(const Hero& hero) {
     tilføjHero(hero.getNavn(), hero.getHP(), hero.getStyrke(), hero.getLevel()); // bruger den anden funktion
 }
 
+void Database::regKamp(int heroId, int våbenId, int monsterId) {
+    std::string sql = "INSERT INTO Kamp (hero_id, vaaben_id, monster_id) VALUES (?, ?, ?);";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_int(stmt, 1, heroId);
+        sqlite3_bind_int(stmt, 2, våbenId);
+        sqlite3_bind_int(stmt, 3, monsterId);
+
+        if (sqlite3_step(stmt) != SQLITE_DONE) {
+            std::cerr << "Fejl ved indsættelse af kamp: " << sqlite3_errmsg(db) << "\n";
+        }
+    } else {
+        std::cerr << "Fejl ved forberedelse af INSERT Kamp: " << sqlite3_errmsg(db) << "\n";
+    }
+
+    sqlite3_finalize(stmt);
+}
 
 void Database::visHeroesAlfabetisk() {
     std::string sql = "SELECT navn, hp, styrke, level FROM Hero ORDER BY navn ASC;";
@@ -104,7 +122,6 @@ void Database::monsterDrabPrVåben() {
     }
     sqlite3_finalize(stmt);
 }
-
 
 void Database::heroFlestDrabPrVåben() {
     std::string sql = R"(

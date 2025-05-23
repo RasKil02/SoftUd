@@ -49,6 +49,10 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
             break;
         }
 
+        if (db) {
+            db->regKamp(helt.getId(), helt.getVåbenId(), fjende.getId()); // mangler implementering ad ID i fjende og våben
+        }
+
         int skadeTilHero = fjende.angreb();
         cout << fjende.getNavn() << " angriber " << helt.getNavn()
              << " med " << skadeTilHero << " skade." << endl;
