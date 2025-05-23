@@ -19,6 +19,7 @@ int main() {
         cout << "1. Opret ny Hero\n";
         cout << "2. Load Hero\n";
         cout << "3. Afslut\n";
+        cout << "4. Se analyse\n";
         cout << "Vælg en mulighed: ";
 
         int valg;
@@ -62,16 +63,18 @@ int main() {
                 kører = false;
                 cout << "Farvel!\n";
                 break;
+            }
             
             case 4: {
                 cout << "--- Analyse ---\n";
-                db.visHeroesAlfabetisk();  // eller andre analysemetoder
+                db.visHeroesAlfabetisk(); // eller andre analysemetoder
                 break;
-}
             }
+            
             default:
                 cout << "Ugyldigt valg.\n";
         }
+        
     }
     
     return 0;

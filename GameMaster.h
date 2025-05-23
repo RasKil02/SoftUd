@@ -6,11 +6,12 @@
 #include "Hero.h"
 #include "FjendeFactory.h"
 #include "GrotteFactory.h"
+#include "Database.h"
 using namespace std;
 
 class GameMaster { 
     public: 
-        GameMaster();
+        GameMaster(Database* database);
         void nyHero();
         void loadHero();
         vector<Hero>& getHeroes();
@@ -21,6 +22,7 @@ class GameMaster {
     protected:
         vector<Hero> heroes;
         FjendeFactory fjendeFactory;
+        Database* db;
     };
 
 #endif

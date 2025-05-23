@@ -9,11 +9,11 @@ void GameMaster::nyHero() {
     cout << "--------- Oprettelse af nu Hero ----------" << endl;
     cout << "Indtast ønskede navn på Hero: ";
     cin >> navn;
-    Hero hero(navn, 10, 2);
-    heroes.push_back(hero);
+    Hero hero(navn, 10, 2); 
+    heroes.emplace_back(hero);
 
     if (db) {
-        db->tilføjHero(navn);
+        db->tilføjHeroIgen(heroes.back());
     }
 }
 

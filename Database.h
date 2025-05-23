@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 #include "Hero.h"
-
-#pragma once
 #include <string>
 #include <sqlite3.h>
 
@@ -14,13 +12,13 @@ public:
     Database(const std::string& filnavn);
     ~Database();
 
-    void tilføjHero(const std::string& navn);
+    void tilføjHero(const std::string& navn, int hp, int styrke, int level);
+    void tilføjHeroIgen(const Hero& hero);
     void visHeroesAlfabetisk();
 
 private:
     sqlite3* db;
 };
-
 
 
 #endif
