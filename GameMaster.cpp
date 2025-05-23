@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-GameMaster::GameMaster() {}
+GameMaster::GameMaster(Database* database) : db(database) {}
 
 void GameMaster::nyHero() {
     string navn;
@@ -11,6 +11,10 @@ void GameMaster::nyHero() {
     cin >> navn;
     Hero hero(navn, 10, 2);
     heroes.push_back(hero);
+
+    if (db) {
+        db->tilføjHero(navn);
+    }
 }
 
 void GameMaster::loadHero() {

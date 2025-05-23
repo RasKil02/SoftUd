@@ -1,13 +1,15 @@
 #include "GameMaster.h"
 #include "Hero.h"
 #include "Fjende.h"
+#include "Database.h"
 #include <iostream>
 #include <vector>
 using namespace std;
 
 
 int main() {
-    GameMaster gm;
+    Database db("spil.db"); // Opretter og åbner forbindelsen
+    GameMaster gm(&db);     // Sender databasen til GameMaster
 
     bool kører = true;
     Hero* aktivHero = nullptr;
@@ -60,6 +62,12 @@ int main() {
                 kører = false;
                 cout << "Farvel!\n";
                 break;
+            
+            case 4: {
+                cout << "--- Analyse ---\n";
+                db.visHeroesAlfabetisk();  // eller andre analysemetoder
+                break;
+}
             }
             default:
                 cout << "Ugyldigt valg.\n";

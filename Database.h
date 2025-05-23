@@ -5,23 +5,22 @@
 #include <string>
 #include "Hero.h"
 
+#pragma once
+#include <string>
+#include <sqlite3.h>
+
 class Database {
 public:
-    Database();
-    void insertHero();
-    vector<Hero> loadHero();
-    void heroAlphapetic(); 
-    int heroKills();                    // Hvor mange kills hver hero har
-    int heroWeaponKills();              // Hvor mange monstre hvert våben har dræbt
-    string mostHeroWeaponKills();       // For hvert våben vis hvilken ”hero” der har besejret flest monstre med dette våben
-
+    Database(const std::string& filnavn);
     ~Database();
+
+    void tilføjHero(const std::string& navn);
+    void visHeroesAlfabetisk();
 
 private:
     sqlite3* db;
-    void createTable();
-
 };
+
 
 
 #endif
