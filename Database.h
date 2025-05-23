@@ -15,6 +15,9 @@ public:
     void tilføjHero(const std::string& navn, int hp, int styrke, int level);
     void tilføjHeroIgen(const Hero& hero);
     void visHeroesAlfabetisk();
+    void visHeroMedFlestDrab();
+    void monsterDrabPrVåben();
+    void heroFlestDrabPrVåben();
 
 private:
     sqlite3* db;

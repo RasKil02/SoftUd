@@ -19,3 +19,16 @@ int Våben::getHoldbarhed() const {
 string Våben::getNavn() const {
     return navn;
 }
+
+void Våben::våbenBrugt() {
+    if (holdbarhed > 0) {
+        holdbarhed--;
+    }
+}
+
+bool Våben::erØdelagt() {
+    if (holdbarhed > 0) {
+        return false;
+    }
+    return true;
+}

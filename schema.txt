@@ -1,0 +1,33 @@
+DROP TABLE IF EXISTS Hero;
+DROP TABLE IF EXISTS Monster;
+DROP TABLE IF EXISTS Vaaben;
+DROP TABLE IF EXISTS Kamp;
+
+CREATE TABLE Hero (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    navn TEXT NOT NULL,
+    hp INTEGER,
+    styrke INTEGER,
+    level INTEGER
+);
+
+CREATE TABLE Vaaben (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    navn TEXT NOT NULL
+);
+
+CREATE TABLE Monster (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    navn TEXT NOT NULL
+);
+
+-- Kamp = én kamp hvor en hero besejrer et monster med et våben
+CREATE TABLE Kamp (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    hero_id INTEGER,
+    vaaben_id INTEGER,
+    monster_id INTEGER,
+    FOREIGN KEY(hero_id) REFERENCES Hero(id),
+    FOREIGN KEY(vaaben_id) REFERENCES Vaaben(id),
+    FOREIGN KEY(monster_id) REFERENCES Monster(id)
+);

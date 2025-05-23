@@ -66,8 +66,32 @@ int main() {
             }
             
             case 4: {
-                cout << "--- Analyse ---\n";
-                db.visHeroesAlfabetisk(); // eller andre analysemetoder
+                cout << "--- Analyse ---\n\n";
+                cout << "1. Vis heroes i alfabetisk rækkefølge\n";
+                cout << "2. Hero med flest drab\n";
+                cout << "3. Monsterdrab pr. våben for en valgt hero\n";
+                cout << "4. Mest effektiv hero pr. våben\n";
+                cout << "Vælg en mulighed: ";
+
+                int analyseValg;
+                cin >> analyseValg;
+
+                switch (analyseValg) {
+                    case 1:
+                        db.visHeroesAlfabetisk();
+                        break;
+                    case 2:
+                        db.visHeroMedFlestDrab();
+                        break;
+                    case 3:
+                        db.monsterDrabPrVåben();
+                        break;
+                    case 4:
+                        db.heroFlestDrabPrVåben();;
+                        break;
+                    default:
+                        cout << "Ugyldigt analysevalg.\n";
+                    }
                 break;
             }
             
