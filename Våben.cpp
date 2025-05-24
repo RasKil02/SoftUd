@@ -43,7 +43,7 @@ void Våben::setId(int nyId) {
     id = nyId;
 }
 
-int Våben::getStyrkeMod() {
+int Våben::getStyrkeMod() const {
     return styrkeMod;
 }
 

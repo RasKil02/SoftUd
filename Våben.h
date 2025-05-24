@@ -15,7 +15,7 @@ public:
     bool erØdelagt();
     int getId() const;
     void setId(int);
-    int getStyrkeMod();
+    int getStyrkeMod() const;
     void setStyrkeMod(int);
     ~Våben();
 

@@ -1,6 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 #include "Karakter.h"
+#include "Våben.h"
 #include <string>
 
 class Hero : public Karakter {
@@ -23,6 +24,8 @@ class Hero : public Karakter {
         void setId(int nyId);
         int getVåbenId() const;
         void setVåbenId(int nyVåbenId);
+        void setVåben(const Våben&);
+        const Våben* getVåben() const;
         virtual ~Hero();
     private:
         int xp = 0;
@@ -31,6 +34,8 @@ class Hero : public Karakter {
         int gold = 0;
         int id;
         int våbenId;
+        Våben aktivtVaaben;
+        bool harVaaben = false;
     };
 
 #endif

@@ -71,9 +71,20 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
     cout << "\nKAMP STARTER! " << helt.getNavn() << " VS " << fjende.getNavn() << "!\n";
 
     while (helt.getHP() > 0 && fjende.getHP() > 0) {
-        int skadeTilFjende = helt.angreb();
+        int totalStyrke = helt.getStyrke();
+        int ekstraSkade = 0;
+
+        // Brug våben hvis helten har ét
+        const Våben* vaaben = helt.getVåben();
+        if (vaaben != nullptr) {
+            totalStyrke += vaaben->getStyrkeMod();
+            ekstraSkade = vaaben->getSkade();
+        }
+
+        int skadeTilFjende = totalStyrke + ekstraSkade;
+
         cout << helt.getNavn() << " angriber " << fjende.getNavn()
-             << " med " << skadeTilFjende << " skade." << endl;
+            << " med " << skadeTilFjende << " skade." << endl;
         if (fjende.mistHP(skadeTilFjende) == 0) {
             helt.modtagXp(fjende.givXp());
             helt.setHp(helt.getMaxHp());
@@ -155,7 +166,7 @@ void GameMaster::startGrotte(Hero* aktivHero) {
                 int index = rand() % muligeVåben.size();
                 Våben v = muligeVåben[index];
 
-                cout << "\n🎁 Du har modtaget et nyt våben: " << v.getNavn() << endl;
+                cout << "\n Du har modtaget et nyt våben: " << v.getNavn() << endl;
                 cout << "  Skade: " << v.getSkade()
                     << ", Styrke-bonus: " << v.getStyrkeMod()
                     << ", Holdbarhed: " << v.getHoldbarhed() << endl;

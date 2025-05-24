@@ -103,4 +103,15 @@ void Hero::setVåbenId(int nyVåbenId) {
     våbenId = nyVåbenId;
 }
 
+void Hero::setVåben(const Våben& v) {
+    aktivtVaaben = v;
+    harVaaben = true;
+    våbenId = v.getId();
+}
+
+const Våben* Hero::getVåben() const {
+    return harVaaben ? &aktivtVaaben : nullptr;
+}
+
+
 Hero::~Hero() {}
