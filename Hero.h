@@ -5,10 +5,11 @@
 
 class Hero : public Karakter {
     public:
-        Hero();
-        Hero(string, int, int);
+        Hero(std::string navn, int hp, int styrke); // basis-konstruktør
+        Hero(std::string navn, int hp, int styrke, int level, int id); // brugt ved load fra DB
         int levelUp();
         int getXp() const;
+        void setXp(int);
         int modtagXp(int);
         int getLevel() const;   
         int getMaxHp() const;
@@ -17,6 +18,7 @@ class Hero : public Karakter {
         int getStyrke() const override;
         int getGold() const; 
         int addGold(int);
+        void setGold(int);
         int getId() const;
         void setId(int nyId);
         int getVåbenId() const;

@@ -8,7 +8,9 @@ CREATE TABLE Hero (
     navn TEXT NOT NULL,
     hp INTEGER,
     styrke INTEGER,
-    level INTEGER
+    level INTEGER,
+    xp INTEGER,
+    gold INTEGER
 );
 
 CREATE TABLE Vaaben (

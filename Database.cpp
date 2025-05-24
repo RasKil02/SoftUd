@@ -54,6 +54,36 @@ void Database::regKamp(int heroId, int våbenId, int monsterId) {
     sqlite3_finalize(stmt);
 }
 
+std::vector<Hero> Database::hentHeroes() {
+    std::vector<Hero> heroes;
+
+    std::string sql = "SELECT id, navn, hp, styrke, level, xp, gold FROM Hero;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            int id = sqlite3_column_int(stmt, 0);
+            std::string navn = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            int hp = sqlite3_column_int(stmt, 2);
+            int styrke = sqlite3_column_int(stmt, 3);
+            int level = sqlite3_column_int(stmt, 4);
+            int xp = sqlite3_column_int(stmt, 5);
+            int gold = sqlite3_column_int(stmt, 6);
+
+            Hero hero(navn, hp, styrke, level, id);
+            hero.setXp(xp);
+            hero.setGold(gold);
+            heroes.push_back(hero);
+        }
+    } else {
+        std::cerr << "Fejl ved hentning af heroes: " << sqlite3_errmsg(db) << std::endl;
+    }
+
+    sqlite3_finalize(stmt);
+    return heroes;
+}
+
+
 void Database::visHeroesAlfabetisk() {
     std::string sql = "SELECT navn, hp, styrke, level FROM Hero ORDER BY navn ASC;";
     sqlite3_stmt* stmt;

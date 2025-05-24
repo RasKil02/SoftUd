@@ -19,7 +19,7 @@ void GameMaster::nyHero() {
 
 void GameMaster::loadHero() {
 
-    heroes.clear();
+    /* heroes.clear();
 
     Hero hero1("Frodo", 10, 2);
     Hero hero2("Gandalf", 12, 3);
@@ -29,7 +29,36 @@ void GameMaster::loadHero() {
     heroes.push_back(hero1);
     heroes.push_back(hero2);
     heroes.push_back(hero3);
-    heroes.push_back(hero4);
+    heroes.push_back(hero4); */
+
+
+        heroes = db->hentHeroes();
+
+    if (heroes.empty()) {
+        std::cout << "Ingen heroes fundet i databasen.\n";
+        return;
+    }
+
+    std::cout << "\n-- Vælg en Hero --\n";
+    for (size_t i = 0; i < heroes.size(); ++i) {
+        std::cout << i + 1 << ". " << heroes[i].getNavn()
+                  << " (HP: " << heroes[i].getHP()
+                  << ", Level: " << heroes[i].getLevel()
+                  << ", Styrke: " << heroes[i].getStyrke()
+                  << ", XP: " << heroes[i].getXp()
+                  << ", Gold: " << heroes[i].getGold()
+                  << ")\n";
+    }
+
+    int valg;
+    std::cout << "Indtast nummer på den hero du vil vælge: ";
+    std::cin >> valg;
+
+    if (valg >= 1 && static_cast<size_t>(valg) <= heroes.size()) {
+        std::cout << "Hero valgt: " << heroes[valg - 1].getNavn() << std::endl;
+    } else {
+        std::cout << "Ugyldigt valg.\n";
+    }
 }
 
 void GameMaster::startKamp(Hero& helt, Fjende& fjende) {

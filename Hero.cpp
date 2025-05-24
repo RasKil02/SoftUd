@@ -5,11 +5,8 @@
 
 Hero::Hero() {}
 
-Hero::Hero(string n, int h, int s) : Karakter(n, h, s) {
-    xp = 0;
-    level = 1;
-    maxHp = h;
-}
+Hero::Hero(std::string n, int h, int s, int id)
+    : Karakter(n, h, s), id(id), xp(0), level(1), maxHp(h), våbenId(-1), gold(0) {}
 
 int Hero::levelUp() {
     if (xp >= (level * 1000)) {
@@ -27,6 +24,10 @@ int Hero::levelUp() {
 
 int Hero::getXp() const {
     return xp;
+}
+
+void Hero::setXp(int nyXp) {
+    xp = nyXp;
 }
 
 int Hero::modtagXp(int modtagXp) {
@@ -67,6 +68,10 @@ int Hero::getGold() const {
 int Hero::addGold(int mængde) {
     gold += mængde;
     return gold;
+}
+
+void Hero::setGold(int nyGold) {
+    gold = nyGold;
 }
 
 int Hero::getId() const {

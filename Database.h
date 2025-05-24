@@ -6,6 +6,7 @@
 #include "Hero.h"
 #include <string>
 #include <sqlite3.h>
+using namespace std;
 
 class Database {
 public:
@@ -14,6 +15,7 @@ public:
 
     void tilføjHero(Hero& hero);
     void regKamp(int heroId, int våbenId, int monsterId);
+    vector<Hero> hentHeroes();
     void visHeroesAlfabetisk();
     void visHeroMedFlestDrab();
     void monsterDrabPrVåben();
