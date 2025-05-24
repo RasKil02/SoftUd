@@ -12,8 +12,7 @@ public:
     Database(const std::string& filnavn);
     ~Database();
 
-    void tilføjHero(const std::string& navn, int hp, int styrke, int level);
-    void tilføjHeroIgen(const Hero& hero);
+    void tilføjHero(Hero& hero);
     void regKamp(int heroId, int våbenId, int monsterId);
     void visHeroesAlfabetisk();
     void visHeroMedFlestDrab();

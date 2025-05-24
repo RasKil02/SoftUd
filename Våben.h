@@ -6,17 +6,20 @@ using namespace std;
 class Våben {
 public:
     Våben();
-    Våben(int, int, string);
+    Våben(int, int, string, int);
     int getSkade() const;
     int getHoldbarhed() const;
     string getNavn() const;
     void våbenBrugt();
     bool erØdelagt();
+    int getId() const;
+    void setId(int);
     ~Våben();
 
 private:
     int skade;
-    int  holdbarhed;
+    int holdbarhed;
+    int id;
     string navn;
 
 };

@@ -44,8 +44,10 @@ Fjende FjendeFactory::createFjende(int heroLevel) {
     int hp = baseHp + heroLevel + (rand() % 3);
     int styrke = baseStyrke + heroLevel + (rand() % 2);
     int xp = heroLevel * 80 + (rand() % 40);
+    static int næsteId = 1;
+    int id = næsteId++;
 
-    return Fjende(navn, hp, styrke, xp);
+    return Fjende(navn, hp, styrke, xp, id);
 }
 
 

@@ -11,24 +11,28 @@ Database::~Database() {
     sqlite3_close(db);
 }
 
-void Database::tilføjHero(const std::string& navn, int hp, int styrke, int level) {
-    std::string sql = "INSERT INTO Hero (navn, hp, styrke, level) VALUES (?, ?, ?, ?);";
+void Database::tilføjHero(Hero& hero) {
+    std::string sql = "INSERT INTO Hero (navn, hp, level, styrke) VALUES (?, ?, ?, ?);";
     sqlite3_stmt* stmt;
 
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, navn.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_int(stmt, 2, hp);
-        sqlite3_bind_int(stmt, 3, styrke);
-        sqlite3_bind_int(stmt, 4, level);
-        if (sqlite3_step(stmt) != SQLITE_DONE) {
-            std::cerr << "Fejl ved indsættelse af hero\n";
-        }
-    }   
-    sqlite3_finalize(stmt);
-}
+        sqlite3_bind_text(stmt, 1, hero.getNavn().c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 2, hero.getHP());
+        sqlite3_bind_int(stmt, 3, hero.getLevel());
+        sqlite3_bind_int(stmt, 4, hero.getStyrke());
 
-void Database::tilføjHeroIgen(const Hero& hero) {
-    tilføjHero(hero.getNavn(), hero.getHP(), hero.getStyrke(), hero.getLevel()); // bruger den anden funktion
+        if (sqlite3_step(stmt) == SQLITE_DONE) {
+            int lastId = sqlite3_last_insert_rowid(db);
+            hero.setId(lastId);  // Sæt ID'et på Hero-objektet
+            std::cout << "Hero tilføjet med ID: " << lastId << "\n";
+        } else {
+            std::cerr << "Fejl ved indsættelse af hero: " << sqlite3_errmsg(db) << "\n";
+        }
+    } else {
+        std::cerr << "Fejl ved forberedelse af INSERT: " << sqlite3_errmsg(db) << "\n";
+    }
+
+    sqlite3_finalize(stmt);
 }
 
 void Database::regKamp(int heroId, int våbenId, int monsterId) {

@@ -13,7 +13,7 @@ void GameMaster::nyHero() {
     heroes.emplace_back(hero);
 
     if (db) {
-        db->tilføjHeroIgen(heroes.back());
+        db->tilføjHero(heroes.back());
     }
 }
 
@@ -50,7 +50,7 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
         }
 
         if (db) {
-            db->regKamp(helt.getId(), helt.getVåbenId(), fjende.getId()); // mangler implementering ad ID i fjende og våben
+            db->regKamp(helt.getId(), helt.getVåbenId(), fjende.getId());
         }
 
         int skadeTilHero = fjende.angreb();

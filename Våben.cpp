@@ -2,10 +2,11 @@
 
 Våben::Våben() {}
 
-Våben::Våben(int s, int h, string n) {
+Våben::Våben(int s, int h, string n, int id) {
     skade = s;
     holdbarhed = h;
     navn = n;
+    id = id;
 }
 
 int Våben::getSkade() const {
@@ -31,4 +32,12 @@ bool Våben::erØdelagt() {
         return false;
     }
     return true;
+}
+
+int Våben::getId() const {
+    return id;
+}
+
+void Våben::setId(int nyId) {
+    id = nyId;
 }
