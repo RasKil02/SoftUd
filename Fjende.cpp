@@ -2,7 +2,7 @@
 
 Fjende::Fjende() {}
 
-Fjende::Fjende(string n, int h, int s, int xp, int id) : Karakter(n, h, s), xp(xp), id(id) {};
+Fjende::Fjende(string n, int h, int s, int xp, int id = -1) : Karakter(n, h, s), xp(xp), id(id) {};
 
 bool Fjende::iLive() const {
     if (getHP() <= 0) {

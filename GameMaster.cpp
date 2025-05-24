@@ -1,6 +1,9 @@
 #include "GameMaster.h"
+#include "Våben.h"
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 GameMaster::GameMaster(Database* database) : db(database) {}
 
@@ -32,7 +35,7 @@ void GameMaster::loadHero() {
     heroes.push_back(hero4); */
 
 
-        heroes = db->hentHeroes();
+    heroes = db->hentHeroes();
 
     if (heroes.empty()) {
         std::cout << "Ingen heroes fundet i databasen.\n";
@@ -92,6 +95,14 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
     }
 }
 
+vector<Våben> muligeVåben = {
+    Våben(5, 20, "Kniv", 1, 0),
+    Våben(0, 10, "Pind", 2, 1),
+    Våben(0, 20, "Metalrør", 3, 2),
+    Våben(20, 30, "Sværd", 4, 1),
+    Våben(10, 40, "Morgenstjerne", 5, 3)
+};
+
 
 // startGrotte funktion til 2. iteration
 void GameMaster::startGrotte(Hero* aktivHero) {
@@ -140,7 +151,17 @@ void GameMaster::startGrotte(Hero* aktivHero) {
                 cout << "Du har besejret alle fjender i denne grotte og modtager: " << valgtGrotte.getGold() << " gold" << endl;
                 aktivHero ->addGold(valgtGrotte.getGold());
                 cout << "Du har: " << aktivHero->getGold() << " gold" << endl;
-            }
+                // Tildel tilfældigt våben
+                int index = rand() % muligeVåben.size();
+                Våben v = muligeVåben[index];
+
+                cout << "\n🎁 Du har modtaget et nyt våben: " << v.getNavn() << endl;
+                cout << "  Skade: " << v.getSkade()
+                    << ", Styrke-bonus: " << v.getStyrkeMod()
+                    << ", Holdbarhed: " << v.getHoldbarhed() << endl;
+
+                aktivHero->setVåbenId(v.getId()); // gem våben-id i helten
+                        }
         }
     }
 }

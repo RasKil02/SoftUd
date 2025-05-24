@@ -3,10 +3,23 @@
 #include <iostream>
 #include <vector>
 
-Hero::Hero() {}
+Hero::Hero(std::string navn, int hp, int styrke)
+    : Karakter(navn, hp, styrke),
+      xp(0),
+      level(1),
+      maxHp(hp),
+      gold(0),
+      id(-1),
+      våbenId(-1) {}
 
-Hero::Hero(std::string n, int h, int s, int id)
-    : Karakter(n, h, s), id(id), xp(0), level(1), maxHp(h), våbenId(-1), gold(0) {}
+Hero::Hero(std::string navn, int hp, int styrke, int lvl, int id)
+    : Karakter(navn, hp, styrke),
+      xp(0),
+      level(lvl),
+      maxHp(hp),
+      gold(0),
+      id(id),
+      våbenId(-1) {}
 
 int Hero::levelUp() {
     if (xp >= (level * 1000)) {

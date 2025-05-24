@@ -2,11 +2,12 @@
 
 Våben::Våben() {}
 
-Våben::Våben(int s, int h, string n, int id) {
+Våben::Våben(int s, int h, string n, int id, int sMod) {
     skade = s;
     holdbarhed = h;
     navn = n;
-    id = id;
+    this->id = id;
+    styrkeMod = sMod;
 }
 
 int Våben::getSkade() const {
@@ -41,3 +42,13 @@ int Våben::getId() const {
 void Våben::setId(int nyId) {
     id = nyId;
 }
+
+int Våben::getStyrkeMod() {
+    return styrkeMod;
+}
+
+void Våben::setStyrkeMod(int mod) {
+    styrkeMod = mod;
+}
+
+Våben::~Våben() {}

@@ -5,8 +5,8 @@
 
 class Hero : public Karakter {
     public:
-        Hero(std::string navn, int hp, int styrke); // basis-konstruktør
-        Hero(std::string navn, int hp, int styrke, int level, int id); // brugt ved load fra DB
+        Hero(std::string navn, int hp, int styrke); 
+        Hero(std::string navn, int hp, int styrke, int level, int id);
         int levelUp();
         int getXp() const;
         void setXp(int);

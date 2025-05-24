@@ -35,27 +35,9 @@ int main() {
             }
             case 2: {
                 gm.loadHero();
-                const vector<Hero>& heroes = gm.getHeroes();
-                if (heroes.empty()) {
-                    cout << "Ingen heroes fundet.\n";
-                } else {
-                    cout << "\n-- Vælg en Hero --\n";
-                    for (size_t i = 0; i < heroes.size(); ++i) {
-                        cout << i + 1 << ". " << heroes[i].getNavn()
-                             << " (HP: " << heroes[i].getHP()
-                             << ", Styrke: " << heroes[i].getStyrke() << ")\n";
-                    }
-                    int hvalg;
-                    cout << "Indtast nummer på den hero du vil vælge: ";
-                    cin >> hvalg;
-                    if (hvalg >= 1 && static_cast<size_t>(hvalg) <= heroes.size()) {
-                        aktivHero = &gm.getHeroes()[hvalg - 1];
-                        cout << "Hero valgt: " << aktivHero->getNavn() << endl;
-                    } else {
-                        cout << "Ugyldigt valg.\n";
-                    }
-
-                    gm.startGrotte(aktivHero);
+                   
+                if (aktivHero != nullptr) {
+                      gm.startGrotte(aktivHero);
                 }
                 break;
             }
