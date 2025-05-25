@@ -33,7 +33,7 @@ class Hero : public Karakter {
         int maxHp;
         int gold = 0;
         int id;
-        int våbenId;
+        int våbenId = -1;
         Våben aktivtVaaben;
         bool harVaaben = false;
     };

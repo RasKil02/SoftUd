@@ -34,10 +34,11 @@ int main() {
                 break;
             }
             case 2: {
-                gm.loadHero();
-                   
+                aktivHero = gm.loadHero();
                 if (aktivHero != nullptr) {
-                      gm.startGrotte(aktivHero);
+                    gm.startGrotte(aktivHero);
+                } else {
+                    cout << "Hero kunne ikke vælges.\n";
                 }
                 break;
             }

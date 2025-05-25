@@ -13,7 +13,7 @@ class GameMaster {
     public: 
         GameMaster(Database* database);
         void nyHero();
-        void loadHero();
+        Hero* loadHero();
         vector<Hero>& getHeroes();
         void startKamp(Hero& helt, Fjende& fjende);
         void startGrotte(Hero* aktivHero);

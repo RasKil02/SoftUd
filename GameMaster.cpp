@@ -20,7 +20,7 @@ void GameMaster::nyHero() {
     }
 }
 
-void GameMaster::loadHero() {
+Hero* GameMaster::loadHero() {
 
     /* heroes.clear();
 
@@ -39,7 +39,7 @@ void GameMaster::loadHero() {
 
     if (heroes.empty()) {
         std::cout << "Ingen heroes fundet i databasen.\n";
-        return;
+        return nullptr;
     }
 
     std::cout << "\n-- Vælg en Hero --\n";
@@ -59,8 +59,11 @@ void GameMaster::loadHero() {
 
     if (valg >= 1 && static_cast<size_t>(valg) <= heroes.size()) {
         std::cout << "Hero valgt: " << heroes[valg - 1].getNavn() << std::endl;
-    } else {
+        return &heroes[valg - 1];
+    } 
+    else {
         std::cout << "Ugyldigt valg.\n";
+        return nullptr;
     }
 }
 
@@ -92,8 +95,14 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
             break;
         }
 
+
+        int monsterId = fjende.getId();
+        if (monsterId == -1 && db) {
+        monsterId = db->getMonsterId(fjende.getNavn());
+        fjende.setId(monsterId);
+}
         if (db) {
-            db->regKamp(helt.getId(), helt.getVåbenId(), fjende.getId());
+            db->regKamp(helt.getId(), helt.getVåbenId(), monsterId);
         }
 
         int skadeTilHero = fjende.angreb();
@@ -171,8 +180,13 @@ void GameMaster::startGrotte(Hero* aktivHero) {
                     << ", Styrke-bonus: " << v.getStyrkeMod()
                     << ", Holdbarhed: " << v.getHoldbarhed() << endl;
 
-                aktivHero->setVåbenId(v.getId()); // gem våben-id i helten
-                        }
+                aktivHero->setVåben(v);
+
+                    if (db) {
+                        db->opdaterHeroes(*aktivHero);
+                    }
+                
+            }
         }
     }
 }

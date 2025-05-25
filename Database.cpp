@@ -12,7 +12,7 @@ Database::~Database() {
 }
 
 void Database::tilføjHero(Hero& hero) {
-    std::string sql = "INSERT INTO Hero (navn, hp, level, styrke) VALUES (?, ?, ?, ?);";
+    std::string sql = "INSERT INTO Hero (navn, hp, level, styrke, gold) VALUES (?, ?, ?, ?, ?);";
     sqlite3_stmt* stmt;
 
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
@@ -20,6 +20,7 @@ void Database::tilføjHero(Hero& hero) {
         sqlite3_bind_int(stmt, 2, hero.getHP());
         sqlite3_bind_int(stmt, 3, hero.getLevel());
         sqlite3_bind_int(stmt, 4, hero.getStyrke());
+        sqlite3_bind_int(stmt, 5, hero.getGold());
 
         if (sqlite3_step(stmt) == SQLITE_DONE) {
             int lastId = sqlite3_last_insert_rowid(db);
@@ -81,6 +82,45 @@ std::vector<Hero> Database::hentHeroes() {
 
     sqlite3_finalize(stmt);
     return heroes;
+}
+
+void Database::opdaterHeroes(const Hero& hero) {
+    std::string sql = "UPDATE Hero SET hp = ?, styrke = ?, level = ?, xp = ?, gold = ? WHERE id = ?;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_int(stmt, 1, hero.getHP());
+        sqlite3_bind_int(stmt, 2, hero.getStyrke());
+        sqlite3_bind_int(stmt, 3, hero.getLevel());
+        sqlite3_bind_int(stmt, 4, hero.getXp());
+        sqlite3_bind_int(stmt, 5, hero.getGold());
+        sqlite3_bind_int(stmt, 6, hero.getId());
+
+        if (sqlite3_step(stmt) != SQLITE_DONE) {
+            std::cerr << "Fejl ved opdatering af hero: " << sqlite3_errmsg(db) << "\n";
+        }
+    } else {
+        std::cerr << "Fejl ved forberedelse af UPDATE Hero: " << sqlite3_errmsg(db) << "\n";
+    }
+
+    sqlite3_finalize(stmt);
+}
+
+int Database::getMonsterId(const string& monsterNavn) {
+    std::string sql = "SELECT id FROM Monster WHERE navn = ?;";
+    sqlite3_stmt* stmt;
+    int monsterId = -1;
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, monsterNavn.c_str(), -1, SQLITE_STATIC);
+
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            monsterId = sqlite3_column_int(stmt, 0);
+        }
+    }
+
+    sqlite3_finalize(stmt);
+    return monsterId;
 }
 
 

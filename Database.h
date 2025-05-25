@@ -16,6 +16,8 @@ public:
     void tilføjHero(Hero& hero);
     void regKamp(int heroId, int våbenId, int monsterId);
     vector<Hero> hentHeroes();
+    void opdaterHeroes(const Hero& hero);
+    int getMonsterId(const string& monsterNavn);
     void visHeroesAlfabetisk();
     void visHeroMedFlestDrab();
     void monsterDrabPrVåben();
