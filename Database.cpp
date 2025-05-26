@@ -124,20 +124,22 @@ int Database::getMonsterId(const string& monsterNavn) {
     return monsterId;
 }
 
-void Database::tilføjVaaben(const Våben& v) {
+int Database::tilføjVaaben(Våben& v) {
     std::string sql = "INSERT INTO Vaaben (navn) VALUES (?);";
     sqlite3_stmt* stmt;
+    int id = -1;
 
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
         sqlite3_bind_text(stmt, 1, v.getNavn().c_str(), -1, SQLITE_STATIC);
         if (sqlite3_step(stmt) == SQLITE_DONE) {
-            int id = sqlite3_last_insert_rowid(db);
-            const_cast<Våben&>(v).setId(id);  // kun acceptabelt fordi vi lige har lavet objektet
+            id = sqlite3_last_insert_rowid(db);
+            v.setId(id);
         } else {
             std::cerr << "Fejl ved indsættelse af våben: " << sqlite3_errmsg(db) << "\n";
         }
     }
     sqlite3_finalize(stmt);
+    return id;
 }
 
 

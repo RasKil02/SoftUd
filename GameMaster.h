@@ -7,6 +7,7 @@
 #include "FjendeFactory.h"
 #include "GrotteFactory.h"
 #include "Database.h"
+#include <tuple>
 using namespace std;
 
 class GameMaster { 
@@ -23,6 +24,8 @@ class GameMaster {
         vector<Hero> heroes;
         FjendeFactory fjendeFactory;
         Database* db;
+        vector<tuple<int, int>> gemteMonsterKampe; // gemmer kun monsterId og heroId
+
     };
 
 #endif

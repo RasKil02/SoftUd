@@ -102,13 +102,7 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
             fjende.setId(monsterId);
         }
 
-        if (db) {
-            if (helt.getVåben()) {
-                db->regKamp(helt.getId(), helt.getVåbenId(), monsterId);
-            } else {
-                db->regKamp(helt.getId(), -1, monsterId);
-            }
-        }
+        gemteMonsterKampe.push_back({helt.getId(), monsterId});
 
 
         int skadeTilHero = fjende.angreb();
@@ -187,14 +181,24 @@ void GameMaster::startGrotte(Hero* aktivHero) {
                     << ", Holdbarhed: " << v.getHoldbarhed() << endl;
 
                 if (db) {
-                    db->tilføjVaaben(v);  // får id fra databasen
+                    int våbenId = db->tilføjVaaben(v);  // sætter ID i objektet v
+                    v.setId(våbenId);                   // sikrer at v har korrekt ID
                 }
-                aktivHero->setVåben(v);  // sætter id i helten
+                aktivHero->setVåben(v);  // sætter våbenet og ID'et i helten
 
                 if (db) {
                     db->opdaterHeroes(*aktivHero);
+
+                    // Nu kan vi registrere kampene med det rigtige våben_id
+                    for (auto& kamp : gemteMonsterKampe) {
+                        int heroId = std::get<0>(kamp);
+                        int monsterId = std::get<1>(kamp);
+                        db->regKamp(heroId, aktivHero->getVåbenId(), monsterId);
+                    }
+
+                    // Ryd listen efter brug
+                    gemteMonsterKampe.clear();
                 }
-                
             }
         }
     }
