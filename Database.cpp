@@ -85,7 +85,7 @@ std::vector<Hero> Database::hentHeroes() {
 }
 
 void Database::opdaterHeroes(const Hero& hero) {
-    std::string sql = "UPDATE Hero SET hp = ?, styrke = ?, level = ?, xp = ?, gold = ? WHERE id = ?;";
+    std::string sql = "UPDATE Hero SET hp = ?, styrke = ?, level = ?, xp = ?, gold = ?, vaaben_id = ? WHERE id = ?;";
     sqlite3_stmt* stmt;
 
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
@@ -94,7 +94,8 @@ void Database::opdaterHeroes(const Hero& hero) {
         sqlite3_bind_int(stmt, 3, hero.getLevel());
         sqlite3_bind_int(stmt, 4, hero.getXp());
         sqlite3_bind_int(stmt, 5, hero.getGold());
-        sqlite3_bind_int(stmt, 6, hero.getId());
+        sqlite3_bind_int(stmt, 6, hero.getVåbenId());
+        sqlite3_bind_int(stmt, 7, hero.getId());
 
         if (sqlite3_step(stmt) != SQLITE_DONE) {
             std::cerr << "Fejl ved opdatering af hero: " << sqlite3_errmsg(db) << "\n";
@@ -121,6 +122,22 @@ int Database::getMonsterId(const string& monsterNavn) {
 
     sqlite3_finalize(stmt);
     return monsterId;
+}
+
+void Database::tilføjVaaben(const Våben& v) {
+    std::string sql = "INSERT INTO Vaaben (navn) VALUES (?);";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, v.getNavn().c_str(), -1, SQLITE_STATIC);
+        if (sqlite3_step(stmt) == SQLITE_DONE) {
+            int id = sqlite3_last_insert_rowid(db);
+            const_cast<Våben&>(v).setId(id);  // kun acceptabelt fordi vi lige har lavet objektet
+        } else {
+            std::cerr << "Fejl ved indsættelse af våben: " << sqlite3_errmsg(db) << "\n";
+        }
+    }
+    sqlite3_finalize(stmt);
 }
 
 

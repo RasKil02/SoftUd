@@ -98,12 +98,18 @@ void GameMaster::startKamp(Hero& helt, Fjende& fjende) {
 
         int monsterId = fjende.getId();
         if (monsterId == -1 && db) {
-        monsterId = db->getMonsterId(fjende.getNavn());
-        fjende.setId(monsterId);
-}
-        if (db) {
-            db->regKamp(helt.getId(), helt.getVåbenId(), monsterId);
+            monsterId = db->getMonsterId(fjende.getNavn());
+            fjende.setId(monsterId);
         }
+
+        if (db) {
+            if (helt.getVåben()) {
+                db->regKamp(helt.getId(), helt.getVåbenId(), monsterId);
+            } else {
+                db->regKamp(helt.getId(), -1, monsterId);
+            }
+        }
+
 
         int skadeTilHero = fjende.angreb();
         cout << fjende.getNavn() << " angriber " << helt.getNavn()
@@ -180,11 +186,14 @@ void GameMaster::startGrotte(Hero* aktivHero) {
                     << ", Styrke-bonus: " << v.getStyrkeMod()
                     << ", Holdbarhed: " << v.getHoldbarhed() << endl;
 
-                aktivHero->setVåben(v);
+                if (db) {
+                    db->tilføjVaaben(v);  // får id fra databasen
+                }
+                aktivHero->setVåben(v);  // sætter id i helten
 
-                    if (db) {
-                        db->opdaterHeroes(*aktivHero);
-                    }
+                if (db) {
+                    db->opdaterHeroes(*aktivHero);
+                }
                 
             }
         }
