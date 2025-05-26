@@ -10,7 +10,8 @@ CREATE TABLE Hero (
     styrke INTEGER,
     level INTEGER,
     xp INTEGER,
-    gold INTEGER
+    gold INTEGER,
+    vaaben_id INTEGER DEFAULT -1
 );
 
 CREATE TABLE Vaaben (
