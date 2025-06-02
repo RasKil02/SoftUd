@@ -8,7 +8,7 @@ using namespace std;
 
 
 int main() {
-    Database db("spil.db"); // Opretter og åbner forbindelsen
+    Database db("../spil.db"); // Opretter og åbner forbindelsen
     GameMaster gm(&db);     // Sender databasen til GameMaster
 
     bool kører = true;

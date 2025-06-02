@@ -127,10 +127,10 @@ vector<Våben> muligeVåben = {
 // startGrotte funktion til 2. iteration
 void GameMaster::startGrotte(Hero* aktivHero) {
     while (aktivHero != nullptr) {
-        vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero -> getLevel());
-
         bool iGrotte = true;
         while (iGrotte) {
+            vector<Grotte> grotter = GrotteFactory::createGrotte(3, 3, aktivHero -> getLevel());
+            
             cout << "---------- Vælg Grotte ----------" << endl;
             cout << "Du kan gå ind i følgende grotter: " << endl;;
             for (size_t i = 0; i < grotter.size(); i++) {
